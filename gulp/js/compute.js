@@ -22,6 +22,16 @@ function isEven(num) {
 
 }
 exports.isEven = isEven;
+
+function mult_3(num) {
+    return num % 3 === 0;
+}
+exports.mult_3 = mult_3;
+
+function mult_6(num) {
+    return isEven(num) && mult_3(num);
+}
+exports.mult_6 = mult_6;
 // if(addFive(0) == 5) {
 //   console.log("test 1 passed!");
 // } else {
