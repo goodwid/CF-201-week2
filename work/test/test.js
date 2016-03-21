@@ -24,6 +24,6 @@ describe ('Goodwin problem 2: ', function () {
         assert.deepEqual(compute.multiply(-5,7),-35);
     });
     it ('should return NaN when multiplying "one" and "two"', function() {
-        assert.deepEqual(compute.multiply('one','two'),NaN);
+        assert(isNaN(compute.multiply('one','two')));
     });
 }); // describe 2
