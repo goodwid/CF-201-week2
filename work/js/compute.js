@@ -27,8 +27,19 @@ function sumArray (input) {
     for (var i=0;i < input.length;i++) {
         results += input[i];
     }
-    console.table (input);
+    //console.table (input);
     console.log (input + ' was passed in as an array of numbers and ' + results + ' is their sum.');
     return results;
 }
 exports.sumArray=sumArray;
+
+function multiplyArray (input) {
+    var results = 1;
+    for (var i=0;i < input.length;i++) {
+        results = results * input[i];
+    }
+    //console.table (input);
+    console.log ('The numbers ' + input + ' have a product of ' + results + '.');
+    return results;
+}
+exports.multiplyArray=multiplyArray;

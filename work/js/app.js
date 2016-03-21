@@ -27,5 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var problemFourOut = document.getElementById('problemFourOut');
     var p4arg1 = [4,6,9];
     problemFourIn.textContent  = 'Calling sumArray() with an arguments of ' + p4arg1 +'.';
-    problemFourOut.textContent = 'sumAndMultiply() returned ' + sumArray(p4arg1);
+    problemFourOut.textContent = 'sumArray() returned ' + sumArray(p4arg1);
+
+    var problemFiveIn  = document.getElementById('problemFiveIn');
+    var problemFiveOut = document.getElementById('problemFiveOut');
+    var p5arg1 = [4,6,9];
+    problemFiveIn.textContent  = 'Calling multiplyArray() with an arguments of ' + p5arg1 +'.';
+    problemFiveOut.textContent = 'multiplyArray() returned ' + multiplyArray(p5arg1);
 });
