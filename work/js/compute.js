@@ -27,7 +27,7 @@ function sumArray (input) {
     for (var i=0;i < input.length;i++) {
         results += input[i];
     }
-    console.table (input);
+    //console.table (input);
     console.log (input + ' was passed in as an array of numbers and ' + results + ' is their sum.');
     return results;
 }
