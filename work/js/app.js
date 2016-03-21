@@ -22,4 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var p3arg3 = 9;
     problemThreeIn.textContent  = 'Calling sumAndMultiply() with an arguments of ' + p3arg1 + ', ' + p3arg2 + ', and ' + p3arg3 + '.';
     problemThreeOut.textContent = 'sumAndMultiply() returned ' + sumAndMultiply(p3arg1,p3arg2,p3arg3);
+
+    var problemFourIn  = document.getElementById('problemFourIn');
+    var problemFourOut = document.getElementById('problemFourOut');
+    var p4arg1 = [4,6,9];
+    problemFourIn.textContent  = 'Calling sumArray() with an arguments of ' + p4arg1 +'.';
+    problemFourOut.textContent = 'sumAndMultiply() returned ' + sumArray(p4arg1);
 });
