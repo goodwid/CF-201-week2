@@ -36,3 +36,12 @@ describe ('Goodwin problem 3: ', function () {
         assert.deepEqual(compute.sumAndMultiply(10,15,30),[55,4500]);
     });
 });
+
+describe ('Goodwin problem 4: ', function () {
+    it ('should return 12 when called with [3,4,5]', function () {
+        assert.deepEqual(compute.sumArray([3,4,5]),12);
+    });
+    it ('should return 55 when called with [10,15,30]', function () {
+        assert.deepEqual(compute.sumArray([10,15,30]),55);
+    });
+});
