@@ -1,6 +1,12 @@
-var pAddFiveIn  = document.getElementById('pAddFiveIn');
-var pAddFiveOut = document.getElementById('pAddFiveOut');
 
-var arg = 10;
-pAddFiveIn.textContent  = 'Calling addFive() with an argument of ' + arg;
-pAddFiveOut.textContent = 'addFive() returned ' + addFive(arg);
+
+
+
+
+
+var problemOneIn  = document.getElementById('problemOneIn');
+var problemOneOut = document.getElementById('problemOneOut');
+var p1arg1 = 10;
+var p1arg2 = 13;
+problemOneIn.textContent  = 'Calling sum() with an arguments of ' + p1arg1 + ' ' + p1arg2 +'.';
+problemOneOut.textContent = 'sum() returned ' + sum(p1arg1,p1arg2);
