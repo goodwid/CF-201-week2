@@ -17,6 +17,11 @@ function addFive(num) {
   return num + 5;
 }
 
+function isEven(num) {
+    return (num % 2) === 0;
+
+}
+exports.isEven = isEven;
 // if(addFive(0) == 5) {
 //   console.log("test 1 passed!");
 // } else {
