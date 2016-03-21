@@ -15,3 +15,15 @@ describe('Goodwin problem 1:', function() {
     });
 
 });   // describe 1
+
+describe ('Goodwin problem 2: ', function () {
+    it ('should return 12 when multiplying 3 and 4', function() {
+        assert.deepEqual(compute.multiply(3,4),12);
+    });
+    it ('should return -35 when multiplying -5 and 7', function() {
+        assert.deepEqual(compute.multiply(-5,7),-35);
+    });
+    it ('should return NaN when multiplying "one" and "two"', function() {
+        assert(isNaN(compute.multiply('one','two')));
+    });
+}); // describe 2
