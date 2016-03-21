@@ -27,3 +27,12 @@ describe ('Goodwin problem 2: ', function () {
         assert(isNaN(compute.multiply('one','two')));
     });
 }); // describe 2
+
+describe ('Goodwin problem 3: ', function () {
+    it ('should return [12,60] when called with 3,4,5', function () {
+        assert.deepEqual(compute.sumAndMultiply(3,4,5),[12,60]);
+    });
+    it ('should return [55,4500] when called with 10,15,30', function () {
+        assert.deepEqual(compute.sumAndMultiply(10,15,30),[55,4500]);
+    });
+})
