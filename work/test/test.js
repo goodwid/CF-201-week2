@@ -1,7 +1,7 @@
 var assert = require('assert');
 var app = require('../js/app.js');
 
-describe('Goodwin function tests:', function() {
+describe('Goodwin problem 1:', function() {
   // it('should check first question', function() {     assert.deepEqual(compute.getQuestion(0), 'first');   });
 
     it ('should return 8 when adding 3 and 5', function() {
@@ -13,7 +13,5 @@ describe('Goodwin function tests:', function() {
     it ('should return "fourfive" when adding "four" and "five"', function() {
         assert.deepEqual(app.sum("four","five"),"fourfive");
     });
-
-
 
 });
