@@ -14,4 +14,4 @@ describe('Goodwin problem 1:', function() {
         assert.deepEqual(compute.sum("four","five"),"fourfive");
     });
 
-});
+});   // describe 1
