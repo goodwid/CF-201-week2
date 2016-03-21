@@ -48,7 +48,7 @@ describe ('Goodwin problem 4: ', function () {
 
 describe ('Goodwin problem 5: ', function () {
     it ('should return 60 when called with [3,4,5]', function () {
-        assert.deepEqual(compute.multiplyArray([3,4,5]),12);
+        assert.deepEqual(compute.multiplyArray([3,4,5]),60);
     });
     it ('should return 4500 when called with [10,15,30]', function () {
         assert.deepEqual(compute.multiplyArray([10,15,30]),4500);
