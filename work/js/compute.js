@@ -4,7 +4,6 @@ function sum(a,b) {
     return c;
 
 }
-
 exports.sum = sum;
 
 function multiply(a,b) {

@@ -35,4 +35,4 @@ describe ('Goodwin problem 3: ', function () {
     it ('should return [55,4500] when called with 10,15,30', function () {
         assert.deepEqual(compute.sumAndMultiply(10,15,30),[55,4500]);
     });
-})
+});
