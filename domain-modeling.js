@@ -1,11 +1,14 @@
 var epicFailVideo = function(epicRating, hasAnimals) {
     this.epicRating=epicRating;
     this.hasAnimals=hasAnimals;
+    this.generateRandom = function (min,max) {
+         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 }
 
-epicFailVideo.prototype.generateRandom = function (min,max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// epicFailVideo.prototype.generateRandom = function (min,max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 epicFailVideo.prototype.dailyLikes = function() {
     var viewers, percentage;
