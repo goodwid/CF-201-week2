@@ -18,14 +18,13 @@ describe('My first test', function() {
   it('should determine that 2 is true',  function() { assert(true  === compute.isEven(2)); });
   it('should determine that 3 is false', function() { assert(false === compute.isEven(3)); });
 
-  //test the mult_3 function
-  it('should determine that 9 is a multiple of 3', function() { assert(true === compute.mult_3(9)); });
-  it('should determine that 5 is not multiple of 3', function() { assert(false === compute.mult_3(5)); });
-  it('should determine that 99 is a multiple of 3', function() { assert(true === compute.mult_3(99)); });
+  //test the mult3 function
+  it('should determine that 9 is a multiple of 3', function() { assert(true === compute.mult3(9)); });
+  it('should determine that 5 is not multiple of 3', function() { assert(false === compute.mult3(5)); });
 
-  // test the mult_6 function
-  it('should determine that 12 is a multiple of 6', function() { assert(true === compute.mult_6(12)); });
-  it('should determine that 99 is not multiple of 3', function() { assert(false === compute.mult_6(99)); });
+  // test the mult6 function
+  it('should determine that 12 is a multiple of 6', function() { assert(true === compute.mult6(12)); });
+  it('should determine that 99 is not multiple of 6', function() { assert(false === compute.mult6(7)); });
 
 
 });

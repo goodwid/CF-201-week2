@@ -23,15 +23,15 @@ function isEven(num) {
 }
 exports.isEven = isEven;
 
-function mult_3(num) {
+function mult3(num) {
     return num % 3 === 0;
 }
-exports.mult_3 = mult_3;
+exports.mult3 = mult3;
 
-function mult_6(num) {
-    return isEven(num) && mult_3(num);
+function mult6(num) {
+    return isEven(num) && mult3(num);
 }
-exports.mult_6 = mult_6;
+exports.mult6 = mult6;
 // if(addFive(0) == 5) {
 //   console.log("test 1 passed!");
 // } else {
