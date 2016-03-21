@@ -1,6 +1,10 @@
-var pAddFiveIn  = document.getElementById('pAddFiveIn');
-var pAddFiveOut = document.getElementById('pAddFiveOut');
 
-var arg = 10;
-pAddFiveIn.textContent  = 'Calling addFive() with an argument of ' + arg;
-pAddFiveOut.textContent = 'addFive() returned ' + addFive(arg);
+
+function sum(a,b) {
+    c=a+b;
+    console.log('The sum of '+ a +' and ' + b +' is ' + c + '.');
+    return c;
+
+}
+
+exports.sum = sum;
