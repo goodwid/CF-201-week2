@@ -1,6 +1,6 @@
 var assert = require('assert');
 var compute = require('../js/compute.js');
-var app = require ('../app/app.js');
+var app = require ('../js/app.js');
 
 describe('Testing compute.js functions: randomRange', function() {
   // it('should check first question', function() {     assert.deepEqual(compute.getQuestion(0), 'first');   });
@@ -19,7 +19,3 @@ describe('Testing compute.js functions: randomRange', function() {
       }
   });
 });   // describe 1
-
-describe ('testing method in resturants.createPizzaData', function () {
-    it ('')
-}

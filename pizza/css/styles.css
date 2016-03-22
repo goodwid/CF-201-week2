@@ -4,17 +4,52 @@ td {
     text-align: center;
 }
 
-table {
-    border: 1px
+tr {
+    padding: 4px;
 }
+table {
+    border: 1px;
+
+}
+
+li a {
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 4px;
+    border-radius: 8px;
+    margin: 4px;
+    background: #999999;
+    color: white;
+    text-align: center;
+}
+ul li {
+    margin-top: 15px;
+    list-style-type: none;
+    float:left;
+
+}
+
 
 #pizzaData {
-    width: 35em;
+    width: 45em;
     margin: auto;
+    clear: both;
+    padding-top: 40px;
+
 }
 
-header {
+.odd {
+    background-color: #ffffff;
+}
+.even {
+    background-color: #cccccc;
+}
+nav,header {
     width: 45em;
     margin: auto;
     text-align: center;
+}
+
+* {
+    border: 1px solid red;
 }
