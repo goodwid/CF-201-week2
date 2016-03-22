@@ -1,3 +1,5 @@
+//This all looks very clean. I think the assignment asked that the first sentence of each question be printed to the page, followed by the output of the function. Not sure how important it is that you follow that to the letter.
+
 var exports = {};
 document.addEventListener('DOMContentLoaded', function() {
     var problemOneIn  = document.getElementById('problemOneIn');

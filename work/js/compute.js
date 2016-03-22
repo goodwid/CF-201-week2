@@ -14,6 +14,7 @@ function multiply(a,b) {
 exports.multiply=multiply;
 
 function sumAndMultiply (a,b,c) {
+    //I did this a bit differently, by storing sum(a,b) in a variable and then calling sum with that variable and c as arguments. Same with multiply(). Yours looks very clean.
     var sumResult = sum(sum(a,b),c);
     var prodResult = multiply(multiply(a,b),c);
     // console.log (a + ', ' + b + ', and '+c+' sum to ' + sumResult + '.');
@@ -22,6 +23,7 @@ function sumAndMultiply (a,b,c) {
 }
 exports.sumAndMultiply = sumAndMultiply;
 
+//Your sumArray function looks identical to mine!
 function sumArray (input) {
     var results = 0;
     for (var i=0;i < input.length;i++) {
@@ -34,8 +36,10 @@ function sumArray (input) {
 exports.sumArray=sumArray;
 
 function multiplyArray (input) {
+    //Way to go setting results equal to 1 to start. Having just defined sumArray, it would have been tempting to set it equal to 0.
     var results = 1;
     for (var i=0;i < input.length;i++) {
+    //results *= input[i] would have worked too.
         results = results * input[i];
     }
     //console.table (input);
