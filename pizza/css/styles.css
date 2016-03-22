@@ -1,0 +1,20 @@
+td {
+    border: 1px solid black;
+    width: 65px;
+    text-align: center;
+}
+
+table {
+    border: 1px
+}
+
+#pizzaData {
+    width: 35em;
+    margin: auto;
+}
+
+header {
+    width: 45em;
+    margin: auto;
+    text-align: center;
+}

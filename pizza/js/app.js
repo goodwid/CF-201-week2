@@ -71,8 +71,8 @@ function createData (open,close,pizzaCount,deliveryCount) {
     for (hour = open ; hour < close ; hour++) {
         pLow = pizzaCount[(blockcount-blockcount%3)/3][0];
         pHigh = pizzaCount[(blockcount-blockcount%3)/3][1];
-        dLow = pizzaCount[(blockcount-blockcount%3)/3][0];
-        dHigh = pizzaCount[(blockcount-blockcount%3)/3][1];
+        dLow = deliveryCount[(blockcount-blockcount%3)/3][0];
+        dHigh = deliveryCount[(blockcount-blockcount%3)/3][1];
         pizzas=randomRange(pLow,pHigh);
         deliveries=randomRange(dLow,dHigh);
         if (deliveries > pizzas) {
@@ -84,22 +84,28 @@ function createData (open,close,pizzaCount,deliveryCount) {
     } // for i
     return results;
 }  // for function
+
 var i,j,k;
 var out ='' ;
 
 for (var i in restaurants) {
-    out += '  <h3>Restaurant: ' + restaurants[i].location + '</h3>';
+    out += '<h3>Restaurant: ' + restaurants[i].location + '</h3>';
     out +='<table>';
     out +=' <tr><th>time</th><th>pizza/hr</th><th>Deliveries</th><th>drivers needed</th></tr>';
-    storedata = createData(restaurants[i].hoursOpen[0],restaurants[i].hoursOpen[1],restaurants[i].pizzaCount,restaurants[0].deliveryCount);
+    storedata = createData(restaurants[i].hoursOpen[0],restaurants[i].hoursOpen[1],restaurants[i].pizzaCount,restaurants[i].deliveryCount);
     for (j=0;j<storedata.length;j++) {
         out += '  <tr>';
-        out += '    <td>' + storedata[j][0] + ':00</td>';
+        if (storedata[j][0] > 23) {
+            out += '    <td>' + (storedata[j][0]-24) + ':00</td>';
+        } else {
+            out += '    <td>' + storedata[j][0] + ':00</td>';
+        }
         out += '    <td>' + storedata[j][1] + '</td>';
         out += '    <td>' + storedata[j][2] + '</td>';
         out += '    <td>' + storedata[j][3] + '</td>';
-        out += '  </tr>'
+        out += '  </tr>';
     }
+    out += '</table>';
 }
 
 document.getElementById('pizzaData').innerHTML = out;
