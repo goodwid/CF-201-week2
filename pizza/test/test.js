@@ -1,7 +1,7 @@
 var assert = require('assert');
 var compute = require('../js/compute.js');
 
-describe('Testing compute.js functions: ', function() {
+describe('Testing compute.js functions: randomRange', function() {
   // it('should check first question', function() {     assert.deepEqual(compute.getQuestion(0), 'first');   });
   it ('should return true as a random number as function call does not return a number outside of 10-45', function() {
       var i,n;
@@ -17,6 +17,4 @@ describe('Testing compute.js functions: ', function() {
           assert(false === ((n < 30) && (n > 92)));
       }
   });
-
-
 });   // describe 1

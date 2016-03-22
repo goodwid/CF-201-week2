@@ -3,4 +3,8 @@ function randomRange (low,high) {
 }
 exports.randomRange = randomRange;
 
-console.log (randomRange(10,45));
+for (var i=0;i<1000;i++) {
+    n = randomRange(20,29);
+    if (n < 20) {console.log ('low' + i);}
+    if (n > 29) {console.log ('high' + i);}
+}
