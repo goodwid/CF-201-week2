@@ -81,7 +81,12 @@ function createData (location) {
         if (deliveries > pizzas) {
             deliveries = pizzas;
         }
-        drivers = deliveries&3;
+        if (deliveries == 0 ) {
+            drivers = 0;
+        } else {
+            drivers = Math.floor(deliveries/3)+1;
+        }
+
         results.push ([hour,pizzas,deliveries, drivers]);
         blockcount++;
     } // for i
@@ -123,8 +128,12 @@ function randomRange (low,high) {
 }
 
 function displayTable(num) {
-    pizzaData.innerHTML = out[num];
-    console.log ('selecting '+ num);
+    if (num >=0) {
+        pizzaData.innerHTML = out[num];
+    } else {
+        pizzaData.innerHTML = out.join('\n');
+    }
+
 }
 
 var ids = ['zero','one','two','three','four','five'];
