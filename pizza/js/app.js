@@ -1,4 +1,4 @@
-
+var exports = {};
 
 var restaurantData = [
     ["Beaverton",[8,26], "Tuesday - Sunday, closed on Mondays", "Bob Jones", "images/jones.jpg", "555-34-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
@@ -18,61 +18,105 @@ function Restaurant(item) {
     this.phoneNumber = item[5];
     this.pizzaCount = item[6];
     this.deliveryCount = item[7];
+    this.createData = function () {
+        var open = this.hoursOpen[0];
+        var close = this.hoursOpen[1];
+        var pizzaCount = this.pizzaCount;
+        var deliveryCount = this.deliveryCount;
+        var hour,pLow,pHigh,dLow,dHigh,pizzas,deliveries,drivers;
+        var blockcount=0; // Determines which block to use based on the hour, assuming each block is 3 hours long.
+        var results = [];
+        for (hour = open ; hour < close ; hour++) {
+            pLow = pizzaCount[(blockcount-blockcount%3)/3][0];
+            pHigh = pizzaCount[(blockcount-blockcount%3)/3][1];
+            dLow = deliveryCount[(blockcount-blockcount%3)/3][0];
+            dHigh = deliveryCount[(blockcount-blockcount%3)/3][1];
+            pizzas=randomRange(pLow,pHigh);                 // randomRange() is loaded in compute.js
+            deliveries=randomRange(dLow,Math.min(dHigh,pizzas));
+            drivers = Math.ceil(deliveries/3);
+            results.push ([hour,pizzas,deliveries,drivers]);
+            blockcount++;
+        } // for i
+        return results;
+    }
+    this.createTable = function () {
+        var storedata = this.createData
+        var perLocationTotal = 0;
+        function createTrEl (class) {
+            var newTr = document.createElement('tr');
+            if (class != null) {
+                newTr.attribute('class',class);
+            }
+            return newTr;
+        } // createTrEl
+        function createTdEl (data) {
+            var newTd = document.createElement('td');
+            var newTdText = document.createTextNode(data);
+            newTd.appendChild(newTdText);
+            return newTd;
+        } // createTdEl
+
+        newHeading = document.createElement('h3');
+        newHeadingText = document.createTextNode(this.location);
+        newHeading.appendChild(newHeadingText);
+
+        newTable = document.createElement('table');
+        newHeadRow = newTr();
+        newHeadRow.appendChild (document.createElement('td').appendChild(document.createTextNode('Time')));
+        newHeadRow.appendChild (document.createElement('td').appendChild(document.createTextNode('Pizzas')));
+        newHeadRow.appendChild (document.createElement('td').appendChild(document.createTextNode('Deliveries')));
+        newHeadRow.appendChild (document.createElement('td').appendChild(document.createTextNode('Drivers')));
+        newTable.appendChild (newHeadRow);
+        for (j=0;j<storedata.length;j++) {
+            perLocationTotal += storedata[j][1];
+            if (j%2) { // every other table highlighting
+                newRow = createTrEl(even);
+
+            } else {
+                newRow = createTrEl();
+            }
+            if (storedata[j][0] > 23) { // convert hours 24-26 to times in the following morning
+                newRow.appendChild (createTdEl(storedata[j][0]-24 + ':00'));
+            } else {
+                newRow.appendChild (createTdEl(storedata[j][0]+ ':00'));
+            }
+            newRow.appendChild (createTdEl(storedata[j][1]);
+            newRow.appendChild (createTdEl(storedata[j][2]);
+            newRow.appendChild (createTdEl(storedata[j][3]);
+            newTable.appendChild (newRow);
+        }
+        re
+
+    }
 }
+
+// var newLi = document.createElement('li');
+// var newA = document.createElement('a');
+// var newAText = document.createTextNode(textToAdd);
+// newA.appendChild(newAText);
+// newA.setAttribute('href','#');
+// newA.setAttribute('onclick','displayTable('+num+')');
+// newLi.appendChild(newA);
+// newLi.setAttribute('id','li'+num);
+// liParent.appendChild(newLi);
+
+
 var restaurants = [];
 for (var i=0;i < restaurantData.length;i++) {
     restaurants[i] = new Restaurant (restaurantData[i]);
 }
 
-function createData (location) {
-    var open = location.hoursOpen[0];
-    var close = location.hoursOpen[1];
-    var pizzaCount = location.pizzaCount;
-    var deliveryCount = location.deliveryCount;
-    var hour,pLow,pHigh,dLow,dHigh,pizzas,deliveries,drivers;
-    var blockcount=0; // Determines which block to use based on the hour, assuming each block is 3 hours long.
-    var results = [];
-    for (hour = open ; hour < close ; hour++) {
-        pLow = pizzaCount[(blockcount-blockcount%3)/3][0];
-        pHigh = pizzaCount[(blockcount-blockcount%3)/3][1];
-        dLow = deliveryCount[(blockcount-blockcount%3)/3][0];
-        dHigh = deliveryCount[(blockcount-blockcount%3)/3][1];
-        pizzas=randomRange(pLow,pHigh);                 // randomRange() is loaded in compute.js
-        deliveries=randomRange(dLow,Math.min(dHigh,pizzas));
-        drivers = Math.ceil(deliveries/3);
-        results.push ([hour,pizzas,deliveries,drivers]);
-        blockcount++;
-    } // for i
-    return results;
-}  // for function
-
 function generatePizzaData (restaurants) {
     var i,j,k;
     var out = [];
     var total = 0;
-    var perLocationTotal;
+    var m;
     for (i in restaurants) {
-        perLocationTotal = 0;
-        out[i] = '';
-        out[i] += '<h3>Restaurant: ' + restaurants[i].location + '</h3>';
-        out[i] += '<table>';
-        out[i] += '<tr><th>Time</th><th>Pizzas per Hour</th><th>Deliveries</th><th>Drivers Needed</th></tr>';
-        storedata = createData(restaurants[i]); // generates random data for this particular store.
-        for (j=0;j<storedata.length;j++) {
-            perLocationTotal += storedata[j][1];
-            if (j%2) { // every other table highlighting
-                out[i] += '<tr class="even">';
-            } else {
-                out[i] += '<tr class="odd">';
-            }
-            if (storedata[j][0] > 23) { // convert hours 24-26 to times in the following morning
-                out[i] += '<td>' + (storedata[j][0]-24) + ':00</td>';
-            } else {
-                out[i] += '<td>' + storedata[j][0] + ':00</td>';
-            }
-            out[i] += '<td>' + storedata[j][1] + '</td>';
-            out[i] += '<td>' + storedata[j][2] + '</td>';
-            out[i] += '<td>' + storedata[j][3] + '</td>';
+        m = resaurants[i].createTable()
+        out.push (resaurants[i].createTable());
+
+
+
             out[i] += '</tr>';
         }  // for j
         out[i] += '<tr><td>Total:</td><td>' + perLocationTotal + '</td></tr>';
@@ -135,7 +179,7 @@ function addLiById (location,textToAdd,num){
 function createNavList() {
     for (var l in restaurants) {
         addLiById('navList',restaurants[l].location, l)
-    }
+    }p
     addLiById('navList','All Locations',-1)
 }
 
@@ -147,7 +191,7 @@ var outStore = generateStoreData(restaurants);
 pizzaData = document.getElementById('pizzaId');
 storeData = document.getElementById('storeId');
 totalData = document.getElementById('pizzaTotal');
-if (pizzaData != null) {
+if (pizzaData) {
     pizzaData.innerHTML = outPizza[0];
     storeData.innerHTML = outStore[0];
 }
