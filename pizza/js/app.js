@@ -59,6 +59,7 @@ function Restaurant(item) {
             return newTh;
         }
         newDiv = document.createElement('div');
+        newDiv.setAttribute('id','pizzaHolder');
 
         newHeading = document.createElement('h3');
         newHeadingText = document.createTextNode('Location: ' + this.location);
@@ -92,52 +93,15 @@ function Restaurant(item) {
     }
 }
 
-
-
-
-// var newLi = document.createElement('li');
-// var newA = document.createElement('a');
-// var newAText = document.createTextNode(textToAdd);
-// newA.appendChild(newAText);
-// newA.setAttribute('href','#');
-// newA.setAttribute('onclick','displayTable('+num+')');
-// newLi.appendChild(newA);
-// newLi.setAttribute('id','li'+num);
-// liParent.appendChild(newLi);
-
-
 var restaurants = [];
 for (var i=0;i < restaurantData.length;i++) {
     restaurants[i] = new Restaurant (restaurantData[i]);
 }
 
-crap=restaurants[1].createData();
-console.log(crap);
-
 pizzaData = document.getElementById('pizzaId');
 storeData = document.getElementById('storeId');
 totalData = document.getElementById('pizzaTotal');
 pizzaData.appendChild (restaurants[0].createDiv());
-
-// function generatePizzaData (restaurants) {
-//     var i,j,k;
-//     var out = [];
-//     var total = 0;
-//     var m;
-//     for (i in restaurants) {
-//         m = resaurants[i].createTable()
-//         out.push (resaurants[i].createTable());
-//
-//
-//
-//             out[i] += '</tr>';
-//         }  // for j
-//         out[i] += '<tr><td>Total:</td><td>' + perLocationTotal + '</td></tr>';
-//         total += perLocationTotal;
-//         out[i] += '</table>';
-//     }   // for i
-//     return [out,total];
-// }  // function
 
 function generateStoreData (restaurants) {
     var i,t;
@@ -165,13 +129,13 @@ function generateStoreData (restaurants) {
 // }
 
 function displayTable (num) {
-    if (num >=0) {
-        pizzaData.appendChild(restaurants[num].createDiv());
-        storeData.innerHTML = outStore[num];
-    } else {
-        pizzaData.innerHTML = outPizza.join('\n');
-        storeData.innerHTML = outStore.join('\n');
-    }
+
+    pizzaData = document.getElementById('pizzaHolder');
+    var parent = pizzaData.parentNode;
+    parent.removeChild(pizzaData);
+    parent.appendChild(restaurants[num].createDiv());
+    storeData.innerHTML = outStore[num];
+
 }
 
 function addLiById (location,textToAdd,num){
@@ -193,7 +157,6 @@ function createNavList() {
     for (var l in restaurants) {
         addLiById('navList',restaurants[l].location, l)
     }
-    addLiById('navList','All Locations',-1)
 }
 
 createNavList();
