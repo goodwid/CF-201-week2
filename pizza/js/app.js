@@ -1,72 +1,70 @@
-var exports = {};
 
-//document.addEventListener('DOMContentLoaded', function() {
 
-var restarauntData = [
-    ["Beaverton",[8,26],"Tuesday - Sunday, closed on Mondays","Bob Jones","images/jones.jpg","555-34-PIZZA",[[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],[[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-
-];
+// var restarauntData = [
+//     ["Beaverton",[8,26],"Tuesday - Sunday, closed on Mondays","Bob Jones","images/jones.jpg","555-34-PIZZA",[[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],[[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+//
+// ];
 var restaurants = [
-{
-    location: "Beaverton",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Bob Jones",
-    managerImage: "images/jones.jpg",
-    phoneNumber: "555-34-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-},
-{
-    location: "Hillsboro",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Edward Montgomery",
-    managerImage: "images/montgomery.jpg",
-    phoneNumber: "555-21-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-},
-{
-    location: "Downtown",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Fred Smith",
-    managerImage: "images/smith.jpg",
-    phoneNumber: "555-99-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-},
-{
-    location: "Northeast",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Angela Harper",
-    managerImage: "images/harper.jpg",
-    phoneNumber: "555-11-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-},
-{
-    location: "Clackamas",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Walter Blenman",
-    managerImage: "images/blenman.jpg",
-    phoneNumber: "555-34-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-},
-{
-    location: "PDX-Airport",
-    hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: "Tuesday - Sunday, closed on Mondays",
-    manager: "Cindy Walker",
-    managerImage: "images/walker.jpg",
-    phoneNumber: "555-34-PIZZA",
-    pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
-}];
+    {
+        location: "Beaverton",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Bob Jones",
+        managerImage: "images/jones.jpg",
+        phoneNumber: "555-34-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
+    },
+    {
+        location: "Hillsboro",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Edward Montgomery",
+        managerImage: "images/montgomery.jpg",
+        phoneNumber: "555-21-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
+    },
+    {
+        location: "Downtown",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Fred Smith",
+        managerImage: "images/smith.jpg",
+        phoneNumber: "555-99-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
+    },
+    {
+        location: "Northeast",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Angela Harper",
+        managerImage: "images/harper.jpg",
+        phoneNumber: "555-11-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
+    },
+    {
+        location: "Clackamas",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Walter Cartwright",
+        managerImage: "images/cartwright.jpg",
+        phoneNumber: "555-34-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
+    },
+    {
+        location: "PDX-Airport",
+        hoursOpen: [8,26], // 26 = 2am the following morning
+        dayOpen: "Tuesday - Sunday, closed on Mondays",
+        manager: "Cindy Walker",
+        managerImage: "images/walker.jpg",
+        phoneNumber: "555-34-PIZZA",
+        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
+        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    }];
 
 function createData (location) {
     var open = location.hoursOpen[0];
@@ -82,18 +80,14 @@ function createData (location) {
         dLow = deliveryCount[(blockcount-blockcount%3)/3][0];
         dHigh = deliveryCount[(blockcount-blockcount%3)/3][1];
         pizzas=randomRange(pLow,pHigh);
-        deliveries=randomRange(dLow,dHigh);
-        if (deliveries > pizzas) {
-            deliveries = pizzas;
-        }
+        deliveries=randomRange(dLow,Math.min(dHigh,pizzas));
+
         drivers = Math.ceil(deliveries/3);
         results.push ([hour,pizzas,deliveries, drivers]);
         blockcount++;
     } // for i
     return results;
 }  // for function
-
-
 
 function generatePizzaData (restaurants) {
     var i,j,k;
@@ -154,7 +148,6 @@ function generateStoreData (restaurants) {
     return out;
 }
 
-
 function randomRange (low,high) {
  return Math.floor(Math.random()*(high-low))+low;
 }
@@ -187,12 +180,14 @@ function addLiById (location,textToAdd,num){
     }
 }
 
-// var ids = ['zero','one','two','three','four','five'];
-for (var l=0;l<restaurants.length;l++) {
-    addLiById('navList',restaurants[l].location, l)
+function createNavList() {
+    for (var l in restaurants) {
+        addLiById('navList',restaurants[l].location, l)
+    }
+    addLiById('navList','All Locations',-1)
 }
-addLiById('navList','All Locations',-1)
 
+createNavList();
 var m = generatePizzaData(restaurants);
 var totalPizzaOutput = m[1];
 var outPizza = m[0];
@@ -205,5 +200,3 @@ if (pizzaData != null) {
     storeData.innerHTML = outStore[0];
 }
 totalData.innerHTML = totalPizzaOutput;
-
-//});  // addEventListenerfunction createEl(elName, elText) {
