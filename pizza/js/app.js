@@ -17,7 +17,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Edward Montgomery",
-    managerImage: "images/montomgery.jpg",
+    managerImage: "images/montgomery.jpg",
     phoneNumber: "555-21-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -88,35 +88,51 @@ function createData (location) {
     return results;
 }  // for function
 
-function generateTables (restaurants) {
+function generatePizzaData (restaurants) {
     var i,j,k;
     var out = [];
-    for (var i in restaurants) {
+    for (i in restaurants) {
         out[i] = '';
         out[i] += '<h3>Restaurant: ' + restaurants[i].location + '</h3>';
-        out[i] +='<table>';
-        out[i] +=' <tr><th>time</th><th>pizza/hr</th><th>Deliveries</th><th>drivers needed</th></tr>';
+        out[i] += '<table>';
+        out[i] += '<tr><th>Time</th><th>Pizzas per Hour</th><th>Deliveries</th><th>Drivers Needed</th></tr>';
         storedata = createData(restaurants[i]);
         for (j=0;j<storedata.length;j++) {
             if (j%2) {
-                out[i] += '  <tr class="even">';
+                out[i] += '<tr class="even">';
             } else {
-                out[i] += '  <tr class="odd">';
+                out[i] += '<tr class="odd">';
             }
             if (storedata[j][0] > 23) {
-                out[i] += '    <td>' + (storedata[j][0]-24) + ':00</td>';
+                out[i] += '<td>' + (storedata[j][0]-24) + ':00</td>';
             } else {
-                out[i] += '    <td>' + storedata[j][0] + ':00</td>';
+                out[i] += '<td>' + storedata[j][0] + ':00</td>';
             }
-            out[i] += '    <td>' + storedata[j][1] + '</td>';
-            out[i] += '    <td>' + storedata[j][2] + '</td>';
-            out[i] += '    <td>' + storedata[j][3] + '</td>';
-            out[i] += '  </tr>';
+            out[i] += '<td>' + storedata[j][1] + '</td>';
+            out[i] += '<td>' + storedata[j][2] + '</td>';
+            out[i] += '<td>' + storedata[j][3] + '</td>';
+            out[i] += '</tr>';
         }
         out[i] += '</table>';
     }
     return out;
 }
+
+function generateStoreData (restaurants) {
+    var i;
+    var out = [];
+    for (i in restaurants) {
+        out[i] = '';
+        out[i] += '<ul id="locationInfo">';
+        out[i] += '<li>Manager: ' + restaurants[i].manager + '</li>';
+        out[i] += '<li>Store Phone Number: ' + restaurants[i].phoneNumber + '</li>';
+        out[i] += '<li>Store Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + (restaurants[i].hoursOpen[1]) + ':00</li>'
+        out[i] += '</ul>';
+        out[i] += '<img src="' + restaurants[i].managerImage + '">';
+    }
+    return out;
+}
+
 
 function randomRange (low,high) {
  return Math.floor(Math.random()*(high-low))+low;
@@ -124,17 +140,13 @@ function randomRange (low,high) {
 
 function displayTable(num) {
     if (num >=0) {
-        pizzaData.innerHTML = out[num];
+        pizzaData.innerHTML = outPizza[num];
+        storeData.innerHTML = outStore[num];
     } else {
-        pizzaData.innerHTML = out.join('\n');
+        pizzaData.innerHTML = outPizza.join('\n');
+        storeData.innerHTML = outStore.join('\n');
     }
-
 }
-function addAToLi (location,textToAdd,num) {
-
-
-    parent.appendChild(newA);
-};
 
 function addLiById (location,textToAdd,num){
   var newLi = document.createElement('li');
@@ -149,11 +161,7 @@ function addLiById (location,textToAdd,num){
   newLi.appendChild(newA);
   var liParent = document.getElementById(location);
   liParent.appendChild(newLi);
-
-};
-
-
-
+}
 
 // var ids = ['zero','one','two','three','four','five'];
 for (var l=0;l<restaurants.length;l++) {
@@ -161,8 +169,11 @@ for (var l=0;l<restaurants.length;l++) {
 }
 addLiById('navList','All Locations',-1)
 
-out = generateTables(restaurants);
-pizzaData = document.getElementById('pizzaData');
-pizzaData.innerHTML = out[3];
+var outPizza = generatePizzaData(restaurants);
+var outStore = generateStoreData(restaurants);
+pizzaData = document.getElementById('pizzaId');
+storeData = document.getElementById('storeId');
+pizzaData.innerHTML = outPizza[0];
+storeData.innerHTML = outStore[0];
 
 //});  // addEventListenerfunction createEl(elName, elText) {

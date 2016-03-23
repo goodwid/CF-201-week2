@@ -1,9 +1,5 @@
-
-
-
 table {
-    border: 1px;
-
+    border: 2px solid black;
 }
 td {
     border: 1px solid black;
@@ -35,23 +31,27 @@ ul li {
 #data {
     width: 60em;
     margin: auto;
+    clear: both;
 }
 
-#pizzaData {
-    width: 30em;
+#pizzaId {
+    width: 28em;
     margin: auto;
     float: left;
     padding-top: 40px;
 
 }
 
-#storedata {
-    width: 30em;
+#storeId {
+    width: 28em;
     margin: auto;
     float: right;
     padding-top: 40px;
 }
 
+#locationInfo {
+
+}
 .odd {
     background-color: #ffffff;
 }
