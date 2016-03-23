@@ -7,7 +7,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Bob Jones",
-    managerImage: "",
+    managerImage: "images/jones.jpg",
     phoneNumber: "555-34-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -17,7 +17,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Edward Montgomery",
-    managerImage: "",
+    managerImage: "images/montomgery.jpg",
     phoneNumber: "555-21-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -27,7 +27,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Fred Smith",
-    managerImage: "",
+    managerImage: "images/smith.jpg",
     phoneNumber: "555-99-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -37,7 +37,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Angela Harper",
-    managerImage: "",
+    managerImage: "images/harper.jpg",
     phoneNumber: "555-11-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -47,7 +47,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Walter Blenman",
-    managerImage: "",
+    managerImage: "images/blenman.jpg",
     phoneNumber: "555-34-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -57,7 +57,7 @@ var restaurants = [
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
     manager: "Cindy Walker",
-    managerImage: "",
+    managerImage: "images/walker.jpg",
     phoneNumber: "555-34-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
     deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
@@ -81,12 +81,7 @@ function createData (location) {
         if (deliveries > pizzas) {
             deliveries = pizzas;
         }
-        if (deliveries == 0 ) {
-            drivers = 0;
-        } else {
-            drivers = Math.floor(deliveries/3);
-        }
-
+        drivers = Math.ceil(deliveries/3);
         results.push ([hour,pizzas,deliveries, drivers]);
         blockcount++;
     } // for i
