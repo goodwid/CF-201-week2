@@ -1,70 +1,28 @@
 
 
-// var restarauntData = [
-//     ["Beaverton",[8,26],"Tuesday - Sunday, closed on Mondays","Bob Jones","images/jones.jpg","555-34-PIZZA",[[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],[[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-//
-// ];
-var restaurants = [
-    {
-        location: "Beaverton",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Bob Jones",
-        managerImage: "images/jones.jpg",
-        phoneNumber: "555-34-PIZZA",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-    },
-    {
-        location: "Hillsboro",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Edward Montgomery",
-        managerImage: "images/montgomery.jpg",
-        phoneNumber: "555-21-PIZZA",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-    },
-    {
-        location: "Downtown",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Fred Smith",
-        managerImage: "images/smith.jpg",
-        phoneNumber: "555-99-PIZZA",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-    },
-    {
-        location: "Northeast",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Angela Harper",
-        managerImage: "images/harper.jpg",
-        phoneNumber: "555-11-PIZZA",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-    },
-    {
-        location: "Clackamas",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Walter Cartwright",
-        managerImage: "images/cartwright.jpg",
-        phoneNumber: "555-86-PIZZA",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
-    },
-    {
-        location: "PDX-Airport",
-        hoursOpen: [8,26], // 26 = 2am the following morning
-        dayOpen: "Tuesday - Sunday, closed on Mondays",
-        manager: "Cindy Walker",
-        managerImage: "images/walker.jpg",
-        phoneNumber: "555-PDX-PIES",
-        pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-        deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
-    }];
+var restaurantData = [
+    ["Beaverton",[8,26], "Tuesday - Sunday, closed on Mondays", "Bob Jones", "images/jones.jpg", "555-34-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+    ["Hillsboro",[8,26], "Tuesday - Sunday, closed on Mondays", "Edward Montgomery", "images/montgomery.jpg", "555-21-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+    ["Downtown",[8,26], "Tuesday - Sunday, closed on Mondays", "Fred Smith", "images/smith.jpg", "555-99-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+    ["Northeast",[8,26], "Tuesday - Sunday, closed on Mondays", "Angela Harper", "images/harper.jpg", "555-11-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+    ["Clackamas",[8,26], "Tuesday - Sunday, closed on Mondays", "Walter Cartwright", "images/cartwright.jpg", "555-86-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+    ["PDX-Airport",[8,26], "Tuesday - Sunday, closed on Mondays", "Cindy Walker", "images/walker.jpg", "555-PDX-PIES", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]]
+];
+
+function Restaurant(item) {
+    this.location = item[0];
+    this.hoursOpen = item[1];
+    this.dayOpen = item[2];
+    this.manager = item[3];
+    this.managerImage = item[4];
+    this.phoneNumber = item[5];
+    this.pizzaCount = item[6];
+    this.deliveryCount = item[7];
+}
+var restaurants = [];
+for (var i=0;i < restaurantData.length;i++) {
+    restaurants[i] = new Restaurant (restaurantData[i]);
+}
 
 function createData (location) {
     var open = location.hoursOpen[0];
