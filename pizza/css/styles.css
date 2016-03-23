@@ -1,17 +1,21 @@
+
+
+
+table {
+    border: 1px;
+
+}
 td {
     border: 1px solid black;
     width: 65px;
     text-align: center;
 }
-
+th {
+    font-weight: bold;
+}
 tr {
     padding: 4px;
 }
-table {
-    border: 1px;
-
-}
-
 li a {
     text-decoration: none;
     border: 1px solid white;
@@ -28,14 +32,24 @@ ul li {
     float:left;
 
 }
-
-
-#pizzaData {
+#data {
     width: 60em;
     margin: auto;
-    clear: both;
+}
+
+#pizzaData {
+    width: 30em;
+    margin: auto;
+    float: left;
     padding-top: 40px;
 
+}
+
+#storedata {
+    width: 30em;
+    margin: auto;
+    float: right;
+    padding-top: 40px;
 }
 
 .odd {
@@ -50,6 +64,6 @@ nav,header {
     text-align: center;
 }
 
-* {
-    border: 1px solid red;
-}
+/** {
+    border: 1px dashed red;
+}*/

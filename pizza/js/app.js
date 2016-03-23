@@ -16,7 +16,7 @@ var restaurants = [
     location: "Hillsboro",
     hoursOpen: [8,26], // 26 = 2am the following morning
     dayOpen: [0,2,3,4,5,6,7],
-    manager: "Bob Jones",
+    manager: "Edward Montgomery",
     managerImage: "",
     phoneNumber: "555-21-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
@@ -84,7 +84,7 @@ function createData (location) {
         if (deliveries == 0 ) {
             drivers = 0;
         } else {
-            drivers = Math.floor(deliveries/3)+1;
+            drivers = Math.floor(deliveries/3);
         }
 
         results.push ([hour,pizzas,deliveries, drivers]);
@@ -135,12 +135,36 @@ function displayTable(num) {
     }
 
 }
+function addAToLi (location,textToAdd,num) {
 
-var ids = ['zero','one','two','three','four','five'];
+
+    parent.appendChild(newA);
+};
+
+function addLiById (location,textToAdd,num){
+  var newLi = document.createElement('li');
+  //var newLiText = document.createTextNode(textToAdd);
+  //newLi.appendChild(newLiText);
+  var newA = document.createElement('a');
+  var newAText = document.createTextNode(textToAdd);
+  newA.appendChild(newAText);
+  newA.setAttribute('href','#');
+  newA.setAttribute('onclick','displayTable('+num+')');
+  console.log (location);
+  newLi.appendChild(newA);
+  var liParent = document.getElementById(location);
+  liParent.appendChild(newLi);
+
+};
+
+
+
+
+// var ids = ['zero','one','two','three','four','five'];
 for (var l=0;l<restaurants.length;l++) {
-    document.getElementById(ids[l]).textContent=restaurants[l].location;
+    addLiById('navList',restaurants[l].location, l)
 }
-
+addLiById('navList','All Locations',-1)
 
 out = generateTables(restaurants);
 pizzaData = document.getElementById('pizzaData');
