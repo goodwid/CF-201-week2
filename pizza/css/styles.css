@@ -101,8 +101,7 @@ header {
     margin-top: 10px;
     height: 120px;
     width: 60em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     text-align: center;
 }
 footer {
