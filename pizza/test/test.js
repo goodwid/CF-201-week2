@@ -1,6 +1,5 @@
 var assert = require('assert');
 var compute = require('../js/compute.js');
-var app = require ('../js/app.js');
 
 describe('Testing compute.js functions: randomRange', function() {
   // it('should check first question', function() {     assert.deepEqual(compute.getQuestion(0), 'first');   });
