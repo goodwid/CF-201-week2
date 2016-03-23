@@ -164,10 +164,12 @@ function addLiById (location,textToAdd,num){
     //newLi.appendChild(newLiText);
     var newA = document.createElement('a');
     var newAText = document.createTextNode(textToAdd);
+
     newA.appendChild(newAText);
     newA.setAttribute('href','#');
     newA.setAttribute('onclick','displayTable('+num+')');
     newLi.appendChild(newA);
+    newLi.setAttribute('id','li'+num);
     var liParent = document.getElementById(location);
     liParent.appendChild(newLi);
 }
