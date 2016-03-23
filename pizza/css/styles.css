@@ -32,10 +32,9 @@ li a {
     margin-right: 11px;
     background-color: #c0a0c0;
     color: white;
-    /*text-align: center;*/
 }
 #navList li {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     list-style-type: none;
     float:left;
 }
@@ -68,8 +67,9 @@ li a {
 #indexContent {
     width: 60em;
     height: 800px;
-    background-image: url("images/pizza-tile.png");
-    background-repeat: repeat-y;
+    background-image: url("../images/pizza-tile2.jpg");
+    background-repeat: repeat;
+    margin: auto;
 }
 .locationInfo {
     float: left;
@@ -92,7 +92,6 @@ nav {
     width: 60em;
     height: 70px;
     margin-left: auto;
-    margin-left: auto;
     margin-right: auto;
     text-align: center;
 
@@ -113,6 +112,10 @@ footer {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+#throwaway {
+    visibility: hidden;
 }
 /** {
     border: 1px dashed red;

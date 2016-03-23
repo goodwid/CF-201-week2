@@ -1,6 +1,11 @@
 var exports = {};
 
 //document.addEventListener('DOMContentLoaded', function() {
+
+var restarauntData = [
+    ["Beaverton",[8,26],"Tuesday - Sunday, closed on Mondays","Bob Jones","images/jones.jpg","555-34-PIZZA",[[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],[[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
+
+];
 var restaurants = [
 {
     location: "Beaverton",
@@ -10,7 +15,7 @@ var restaurants = [
     managerImage: "images/jones.jpg",
     phoneNumber: "555-34-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
 },
 {
     location: "Hillsboro",
@@ -20,7 +25,7 @@ var restaurants = [
     managerImage: "images/montgomery.jpg",
     phoneNumber: "555-21-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
 },
 {
     location: "Downtown",
@@ -30,7 +35,7 @@ var restaurants = [
     managerImage: "images/smith.jpg",
     phoneNumber: "555-99-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
 },
 {
     location: "Northeast",
@@ -40,7 +45,7 @@ var restaurants = [
     managerImage: "images/harper.jpg",
     phoneNumber: "555-11-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
 },
 {
     location: "Clackamas",
@@ -50,7 +55,7 @@ var restaurants = [
     managerImage: "images/blenman.jpg",
     phoneNumber: "555-34-PIZZA",
     pizzaCount: [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]],
-    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]],
+    deliveryCount: [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]
 },
 {
     location: "PDX-Airport",
@@ -129,13 +134,19 @@ function generatePizzaData (restaurants) {
 
 function generateStoreData (restaurants) {
     var i;
+    var t;
     var out = [];
     for (i in restaurants) {
         out[i] = '';
         out[i] += '<ul class="locationInfo">';
         out[i] += '<li>Manager: ' + restaurants[i].manager + '</li>';
         out[i] += '<li>Phone Number: ' + restaurants[i].phoneNumber + '</li>';
-        out[i] += '<li>Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + (restaurants[i].hoursOpen[1]) + ':00</li>'
+        if (restaurants[i].hoursOpen[1]> 23) {
+            t = restaurants[i].hoursOpen[1]-24;
+        } else {
+            t = restaurants[i].hoursOpen[1];
+        }
+        out[i] += '<li>Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + t + ':00</li>'
         out[i] += '<li>Days Open: ' + restaurants[i].dayOpen + '</li>';
         out[i] += '</ul>';
         out[i] += '<img class="imageClass" src="' + restaurants[i].managerImage + '">';
@@ -171,7 +182,9 @@ function addLiById (location,textToAdd,num){
     newLi.appendChild(newA);
     newLi.setAttribute('id','li'+num);
     var liParent = document.getElementById(location);
-    liParent.appendChild(newLi);
+    if (liParent != null) {
+        liParent.appendChild(newLi);
+    }
 }
 
 // var ids = ['zero','one','two','three','four','five'];
@@ -187,9 +200,10 @@ var outStore = generateStoreData(restaurants);
 pizzaData = document.getElementById('pizzaId');
 storeData = document.getElementById('storeId');
 totalData = document.getElementById('pizzaTotal');
-pizzaData.innerHTML = outPizza[0];
-storeData.innerHTML = outStore[0];
+if (pizzaData != null) {
+    pizzaData.innerHTML = outPizza[0];
+    storeData.innerHTML = outStore[0];
+}
 totalData.innerHTML = totalPizzaOutput;
-console.log(totalPizzaOutput);
 
 //});  // addEventListenerfunction createEl(elName, elText) {
