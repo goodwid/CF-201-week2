@@ -40,24 +40,10 @@ function Restaurant(item) {
         } // for i
         return results;
     }
-    this.createDiv = function () {
+    this.generatePizzaData = function () {
         var storeData = this.createData();
         var total = 0;
-        var createTrEl = function () {
-            var newTr = document.createElement('tr');
-            return newTr;
-        };// createTrEl
-        var createTdEl = function (data) {
-            var newTd = document.createElement('td');
-            var newTdText = document.createTextNode(data);
-            newTd.appendChild(newTdText);
-            return newTd;
-        }; // createTdEl
-        var createThEl = function (data) {
-            var newTh = document.createElement('th');
-            var newThText = document.createTextNode(data);
-            return newTh;
-        }
+
         newDiv = document.createElement('div');
         newDiv.setAttribute('id','pizzaHolder');
 
@@ -68,10 +54,10 @@ function Restaurant(item) {
 
         newTable = document.createElement('table');
         newHeadRow = createTrEl();
-        newHeadRow.appendChild (createTdEl('Time'));
-        newHeadRow.appendChild (createTdEl('Pizzas'));
-        newHeadRow.appendChild (createTdEl('Deliveries'));
-        newHeadRow.appendChild (createTdEl('Drivers'));
+        newHeadRow.appendChild (createThEl('Time'));
+        newHeadRow.appendChild (createThEl('Pizzas'));
+        newHeadRow.appendChild (createThEl('Deliveries'));
+        newHeadRow.appendChild (createThEl('Drivers'));
         newTable.appendChild (newHeadRow);
         console.log(storeData.length)
         for (j=0;j<storeData.length;j++) {
@@ -91,75 +77,111 @@ function Restaurant(item) {
         newDiv.appendChild(newTable);
         return (newDiv);
     }
-}
+    this.generateStoreData = function () {
+        var i,t;
+        newDiv = document.createElement('div');
+        newDiv.setAttribute('id','storeHolder');
 
-var restaurants = [];
-for (var i=0;i < restaurantData.length;i++) {
-    restaurants[i] = new Restaurant (restaurantData[i]);
-}
-
-pizzaData = document.getElementById('pizzaId');
-storeData = document.getElementById('storeId');
-totalData = document.getElementById('pizzaTotal');
-pizzaData.appendChild (restaurants[0].createDiv());
-
-function generateStoreData (restaurants) {
-    var i,t;
-    var out = [];
-    for (i in restaurants) {
-        out[i] = '';
-        out[i] += '<ul class="locationInfo">';
-        out[i] += '<li>Manager: ' + restaurants[i].manager + '</li>';
-        out[i] += '<li>Phone Number: ' + restaurants[i].phoneNumber + '</li>';
-        if (restaurants[i].hoursOpen[1]> 23) { // converting hours 24-26 to the next morning times.
-            t = restaurants[i].hoursOpen[1]-24;
+        newList = createUlEl();
+        newList.setAttribute('class','locationInfo');
+        newList.appendChild(createLiEl('Manager: ' + this.manager));
+        newList.appendChild(createLiEl('Phone: ' + this.phoneNumber));
+        if (this.hoursOpen[1]> 23) { // converting hours 24-26 to the next morning times.
+            t = this.hoursOpen[1]-24;
         } else {
-            t = restaurants[i].hoursOpen[1];
+            t = this.hoursOpen[1];
         }
-        out[i] += '<li>Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + t + ':00</li>'
-        out[i] += '<li>Days Open: ' + restaurants[i].dayOpen + '</li>';
-        out[i] += '</ul>';
-        out[i] += '<img class="imageClass" src="' + restaurants[i].managerImage + '">';
-    } // for i
-    return out;
-} // function
+        newList.appendChild(createLiEl('Hours: + '+ this.hoursOpen[0] +':00 to ' + t + ':00'));
+        newList.appendChild(createLiEl('Days Open: '+ this.dayOpen));
+        newDiv.appendChild(newList);
+        newImage = document.createElement('img');
+        newImage.setAttribute('class','imageClass');
+        newImage.setAttribute('src',this.managerImage);
+        newDiv.appendChild(newImage);
 
-// function randomRange (low,high) {
-//  return Math.floor(Math.random()*(high-low))+low;
-// }
-
-function displayTable (num) {
-
-    pizzaData = document.getElementById('pizzaHolder');
-    var parent = pizzaData.parentNode;
-    parent.removeChild(pizzaData);
-    parent.appendChild(restaurants[num].createDiv());
-    storeData.innerHTML = outStore[num];
-
-}
-
-function addLiById (location,textToAdd,num){
-    var liParent = document.getElementById(location);
-    if (liParent != null) {  // only create the DOM elements if the parent exists to attach them to.
-        var newLi = document.createElement('li');
-        var newA = document.createElement('a');
-        var newAText = document.createTextNode(textToAdd);
-        newA.appendChild(newAText);
-        newA.setAttribute('href','#');
-        newA.setAttribute('onclick','displayTable('+num+')');
-        newLi.appendChild(newA);
-        newLi.setAttribute('id','li'+num);
-        liParent.appendChild(newLi);
+        return newDiv;
     }
 }
 
+var createTrEl = function () {
+    var newTr = document.createElement('tr');
+    return newTr;
+};// createTrEl
+var createTdEl = function (data) {
+    var newTd = document.createElement('td');
+    var newTdText = document.createTextNode(data);
+    newTd.appendChild(newTdText);
+    return newTd;
+}; // createTdEl
+var createThEl = function (data) {
+    var newTh = document.createElement('th');
+    var newThText = document.createTextNode(data);
+    newTh.appendChild(newThText);
+    return newTh;
+}
+var createUlEl = function () {
+    var newUl = document.createElement('ul');
+    return newUl;
+};// createUlEl
+var createLiEl = function (data) {
+    var newLi = document.createElement('li');
+    var newLiText = document.createTextNode(data);
+    newLi.appendChild(newLiText);
+    return newLi;
+}
+
+
+
+
+ // function
+
+function displayTable (num) {
+    var parent;
+    pizzaData = document.getElementById('pizzaHolder');
+    parent = pizzaData.parentNode;
+    parent.removeChild(pizzaData);
+    parent.appendChild(restaurants[num].generatePizzaData());
+    storeData = document.getElementById('storeHolder');
+    parent = storeData.parentNode;
+    parent.removeChild(storeData);
+    parent.appendChild(restaurants[num].generateStoreData());
+
+
+    storeData.innerHTML = outStore[num];
+}
+
 function createNavList() {
+    function addLiById (location,textToAdd,num){
+        var liParent = document.getElementById(location);
+        if (liParent != null) {  // only create the DOM elements if the parent exists to attach them to.
+            var newLi = document.createElement('li');
+            var newA = document.createElement('a');
+            var newAText = document.createTextNode(textToAdd);
+            newA.appendChild(newAText);
+            newA.setAttribute('href','#');
+            newA.setAttribute('onclick','displayTable('+num+')');
+            newLi.appendChild(newA);
+            newLi.setAttribute('id','li'+num);
+            liParent.appendChild(newLi);
+        }
+    }
     for (var l in restaurants) {
         addLiById('navList',restaurants[l].location, l)
     }
 }
-
+var restaurants = [];
+for (var i=0;i < restaurantData.length;i++) {
+    restaurants[i] = new Restaurant (restaurantData[i]);
+}
 createNavList();
+
+pizzaData = document.getElementById('pizzaId');
+storeData = document.getElementById('storeId');
+totalData = document.getElementById('pizzaTotal');
+pizzaData.appendChild (restaurants[0].generatePizzaData());
+storeData.appendChild (restaurants[0].generateStoreData());
+
+
 // var m = generatePizzaData(restaurants);
 // var totalPizzaOutput = m[1];
 // var outPizza = m[0];
