@@ -5,7 +5,7 @@ var restaurants = [
 {
     location: "Beaverton",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Bob Jones",
     managerImage: "images/jones.jpg",
     phoneNumber: "555-34-PIZZA",
@@ -15,7 +15,7 @@ var restaurants = [
 {
     location: "Hillsboro",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Edward Montgomery",
     managerImage: "images/montgomery.jpg",
     phoneNumber: "555-21-PIZZA",
@@ -25,7 +25,7 @@ var restaurants = [
 {
     location: "Downtown",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Fred Smith",
     managerImage: "images/smith.jpg",
     phoneNumber: "555-99-PIZZA",
@@ -35,7 +35,7 @@ var restaurants = [
 {
     location: "Northeast",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Angela Harper",
     managerImage: "images/harper.jpg",
     phoneNumber: "555-11-PIZZA",
@@ -45,7 +45,7 @@ var restaurants = [
 {
     location: "Clackamas",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Walter Blenman",
     managerImage: "images/blenman.jpg",
     phoneNumber: "555-34-PIZZA",
@@ -55,7 +55,7 @@ var restaurants = [
 {
     location: "PDX-Airport",
     hoursOpen: [8,26], // 26 = 2am the following morning
-    dayOpen: [0,2,3,4,5,6,7],
+    dayOpen: "Tuesday - Sunday, closed on Mondays",
     manager: "Cindy Walker",
     managerImage: "images/walker.jpg",
     phoneNumber: "555-34-PIZZA",
@@ -123,12 +123,13 @@ function generateStoreData (restaurants) {
     var out = [];
     for (i in restaurants) {
         out[i] = '';
-        out[i] += '<ul id="locationInfo">';
+        out[i] += '<ul class="locationInfo">';
         out[i] += '<li>Manager: ' + restaurants[i].manager + '</li>';
-        out[i] += '<li>Store Phone Number: ' + restaurants[i].phoneNumber + '</li>';
-        out[i] += '<li>Store Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + (restaurants[i].hoursOpen[1]) + ':00</li>'
+        out[i] += '<li>Phone Number: ' + restaurants[i].phoneNumber + '</li>';
+        out[i] += '<li>Hours: ' + restaurants[i].hoursOpen[0] +':00 to ' + (restaurants[i].hoursOpen[1]) + ':00</li>'
+        out[i] += '<li>Days Open: ' + restaurants[i].dayOpen + '</li>';
         out[i] += '</ul>';
-        out[i] += '<img src="' + restaurants[i].managerImage + '">';
+        out[i] += '<img class="imageClass" src="' + restaurants[i].managerImage + '">';
     }
     return out;
 }

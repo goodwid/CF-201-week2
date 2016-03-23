@@ -15,27 +15,27 @@ tr {
 li a {
     text-decoration: none;
     border: 1px solid white;
-    padding: 4px;
+    padding: 5px;
     border-radius: 8px;
-    margin: 4px;
+    margin: 11px;
     background: #999999;
     color: white;
-    text-align: center;
+    /*text-align: center;*/
 }
-ul li {
-    margin-top: 15px;
+#navList li {
+    /*margin-top: 15px;*/
     list-style-type: none;
     float:left;
-
 }
 #data {
     width: 60em;
     margin: auto;
     clear: both;
+    padding-top: 20px;
 }
 
 #pizzaId {
-    width: 28em;
+    width: 21em;
     margin: auto;
     float: left;
     padding-top: 40px;
@@ -43,15 +43,19 @@ ul li {
 }
 
 #storeId {
-    width: 28em;
+    width: 38em;
     margin: auto;
     float: right;
     padding-top: 40px;
 }
 
-#locationInfo {
-
+.locationInfo {
+    float: left;
 }
+.imageClass {
+    float: right;
+}
+
 .odd {
     background-color: #ffffff;
 }
@@ -64,6 +68,6 @@ nav,header {
     text-align: center;
 }
 
-/** {
+* {
     border: 1px dashed red;
-}*/
+}
