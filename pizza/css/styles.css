@@ -68,6 +68,6 @@ nav,header {
     text-align: center;
 }
 
-* {
+/** {
     border: 1px dashed red;
-}
+}*/

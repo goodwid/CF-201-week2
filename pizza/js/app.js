@@ -88,16 +88,23 @@ function createData (location) {
     return results;
 }  // for function
 
+
+
 function generatePizzaData (restaurants) {
     var i,j,k;
     var out = [];
+    var total = 0;
+    var perLocationTotal;
     for (i in restaurants) {
+        perLocationTotal = 0;
         out[i] = '';
         out[i] += '<h3>Restaurant: ' + restaurants[i].location + '</h3>';
         out[i] += '<table>';
         out[i] += '<tr><th>Time</th><th>Pizzas per Hour</th><th>Deliveries</th><th>Drivers Needed</th></tr>';
         storedata = createData(restaurants[i]);
+        // perLocationTotal += totalPizzas(storedata);
         for (j=0;j<storedata.length;j++) {
+            perLocationTotal += storedata[j][1];
             if (j%2) {
                 out[i] += '<tr class="even">';
             } else {
@@ -113,9 +120,11 @@ function generatePizzaData (restaurants) {
             out[i] += '<td>' + storedata[j][3] + '</td>';
             out[i] += '</tr>';
         }
+        out[i] += '<tr><td>Total:</td><td>' + perLocationTotal + '</td></tr>';
+        total += perLocationTotal;
         out[i] += '</table>';
     }
-    return out;
+    return [out,total];
 }
 
 function generateStoreData (restaurants) {
@@ -150,18 +159,17 @@ function displayTable(num) {
 }
 
 function addLiById (location,textToAdd,num){
-  var newLi = document.createElement('li');
-  //var newLiText = document.createTextNode(textToAdd);
-  //newLi.appendChild(newLiText);
-  var newA = document.createElement('a');
-  var newAText = document.createTextNode(textToAdd);
-  newA.appendChild(newAText);
-  newA.setAttribute('href','#');
-  newA.setAttribute('onclick','displayTable('+num+')');
-  console.log (location);
-  newLi.appendChild(newA);
-  var liParent = document.getElementById(location);
-  liParent.appendChild(newLi);
+    var newLi = document.createElement('li');
+    //var newLiText = document.createTextNode(textToAdd);
+    //newLi.appendChild(newLiText);
+    var newA = document.createElement('a');
+    var newAText = document.createTextNode(textToAdd);
+    newA.appendChild(newAText);
+    newA.setAttribute('href','#');
+    newA.setAttribute('onclick','displayTable('+num+')');
+    newLi.appendChild(newA);
+    var liParent = document.getElementById(location);
+    liParent.appendChild(newLi);
 }
 
 // var ids = ['zero','one','two','three','four','five'];
@@ -170,11 +178,16 @@ for (var l=0;l<restaurants.length;l++) {
 }
 addLiById('navList','All Locations',-1)
 
-var outPizza = generatePizzaData(restaurants);
+var m = generatePizzaData(restaurants);
+var totalPizzaOutput = m[1];
+var outPizza = m[0];
 var outStore = generateStoreData(restaurants);
 pizzaData = document.getElementById('pizzaId');
 storeData = document.getElementById('storeId');
+totalData = document.getElementById('pizzaTotal');
 pizzaData.innerHTML = outPizza[0];
 storeData.innerHTML = outStore[0];
+totalData.innerHTML = totalPizzaOutput;
+console.log(totalPizzaOutput);
 
 //});  // addEventListenerfunction createEl(elName, elText) {
