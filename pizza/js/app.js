@@ -144,12 +144,37 @@ var createLiEl = function (data) {
 }
 
 function getPizzaTotals () {
-    var total = 0;
-    for (i in restaurants) {
-        total += restaurants[i].locationTotal;
+    var runningSlotTotal= new Array([]);
+    var weeklyTotal = 0;
+    var slotTotal = [];
+    for (var d=0;d<26;d++) {
+        slotTotal[d] =0;
+        // runningSlotTotal[i]=[];
     }
-    return total;
+    console.log('slotTotal: '+ slotTotal);
+    var open,close;
+    for (i in restaurants) {
+        weeklyTotal += restaurants[i].locationTotal;
+        open = restaurants[i].hoursOpen[0];
+        close = restaurants[i].hoursOpen[1];
+        for (var k=0;k<26;k++) {
+            runningSlotTotal[k] =0;
+        }
+        for (hour = open ; hour < close ; hour++) {
+            runningSlotTotal[hour]=restaurants[i].retrieveData()[hour-open][1];
+            console.log(runningSlotTotal[hour]);
+        }
+        console.log('end of for i RST: '+ runningSlotTotal)
+        for (var j=0;j<runningSlotTotal.length;j++) {
+            slotTotal[j] += runningSlotTotal[j];
+        }
+        console.log ('end of for j ST: ' + slotTotal);
+
+
+    }
+    return [weeklyTotal,slotTotal];
 }
+
 
 function displayTable (num) {
     var parent;
@@ -200,4 +225,6 @@ var totalData = document.getElementById('pizzaTotal');
 if (pizzaData)
 pizzaData.appendChild (restaurants[0].generatePizzaTable());
 storeData.appendChild (restaurants[0].generateStoreData());
-totalData.innerHTML = getPizzaTotals();
+var m = getPizzaTotals();
+totalData.innerHTML = m[0];
+console.log(m[1]);
