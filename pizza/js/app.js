@@ -9,6 +9,7 @@ var restaurantData = [
     ["PDX-Airport",[8,26], "Tuesday - Sunday, closed on Mondays", "Cindy Walker", "images/walker.jpg", "555-PDX-PIES", [[0,4],[0,7],[2,15],[6,9],[4,8],[2,4]], [[0,4],[0,4],[1,4],[5,18],[2,5],[3,11]]]
 ];
 
+// Restaurant object constructor
 function Restaurant(item) {
     this.storeLocation = item[0];
     this.hoursOpen = item[1];
@@ -19,15 +20,15 @@ function Restaurant(item) {
     this.pizzaCount = item[6];
     this.deliveryCount = item[7];
     this.locationTotal = 0;
-    this.dataStorage;
+    this.dataStorage = null;
     this.retrieveData = function () {
-        if (this.dataStorage == null) {
+        if (this.dataStorage === null) {
             this.dataStorage = this.createData();
             return this.dataStorage;
         } else {
             return this.dataStorage;
         }
-    }
+    };
     this.createData = function () {
         var open = this.hoursOpen[0];
         var close = this.hoursOpen[1];
@@ -49,7 +50,7 @@ function Restaurant(item) {
             blockcount++;
         } // for i
         return results;
-    }
+    };
     this.generatePizzaTable = function () {
         var storeData = this.retrieveData();
         var total = 0;
@@ -89,7 +90,7 @@ function Restaurant(item) {
         this.LocationTotal = total;
         newDiv.appendChild(newTable);
         return (newDiv);
-    }
+    };
     this.generateStoreData = function () {
         var i,t;
         newDiv = document.createElement('div');
@@ -113,7 +114,7 @@ function Restaurant(item) {
         newDiv.appendChild(newImage);
 
         return newDiv;
-    }
+    };
 }
 
 var createTrEl = function () {
@@ -131,7 +132,7 @@ var createThEl = function (data) {
     var newThText = document.createTextNode(data);
     newTh.appendChild(newThText);
     return newTh;
-}
+};
 var createUlEl = function () {
     var newUl = document.createElement('ul');
     return newUl;
@@ -141,19 +142,17 @@ var createLiEl = function (data) {
     var newLiText = document.createTextNode(data);
     newLi.appendChild(newLiText);
     return newLi;
-}
+};
 
 function getPizzaTotals () {
     var runningSlotTotal= new Array([]);
     var weeklyTotal = 0;
     var slotTotal = [];
     for (var d=0;d<26;d++) {
-        slotTotal[d] =0;
-        // runningSlotTotal[i]=[];
+        slotTotal[d] = 0;
     }
-    // console.log('slotTotal: '+ slotTotal);
     var open,close;
-    for (i in restaurants) {
+    for (var i in restaurants) {
         weeklyTotal += restaurants[i].locationTotal;
         open = restaurants[i].hoursOpen[0];
         close = restaurants[i].hoursOpen[1];
@@ -162,15 +161,10 @@ function getPizzaTotals () {
         }
         for (hour = open ; hour < close ; hour++) {
             runningSlotTotal[hour]=restaurants[i].retrieveData()[hour-open][1];
-            // console.log(runningSlotTotal[hour]);
         }
-        // console.log('end of for i RST: '+ runningSlotTotal)
         for (var j=0;j<runningSlotTotal.length;j++) {
             slotTotal[j] += runningSlotTotal[j];
         }
-        // console.log ('end of for j ST: ' + slotTotal);
-
-
     }
     return [weeklyTotal,slotTotal];
 }
@@ -222,38 +216,42 @@ function displayTable (num) {
     }
 }
 
-function createNavList() {
-    function addLiById (DOMlocation,textToAdd,num){
-        var liParent = document.getElementById(DOMlocation);
-        if (liParent != null) {  // only create the DOM elements if the parent exists to attach them to.
-            var newLi = document.createElement('li');
-            var newA = document.createElement('a');
-            var newAText = document.createTextNode(textToAdd);
-            newA.appendChild(newAText);
-            newA.setAttribute('href','#');
-            newA.setAttribute('onclick','displayTable('+num+')');
-            newLi.appendChild(newA);
-            newLi.setAttribute('id','li'+num);
-            liParent.appendChild(newLi);
-        }
+function addLiById (DOMlocation,textToAdd,num) {
+    if (DOMlocation !== null) {  // only create the DOM elements if the parent exists to attach them to.
+        var newLi = document.createElement('li');
+        var newA = document.createElement('a');
+        var newAText = document.createTextNode(textToAdd);
+        newA.appendChild(newAText);
+        newA.setAttribute('href','#');
+        newA.setAttribute('id',num);
+        newLi.appendChild(newA);
+        DOMlocation.appendChild(newLi);
     }
+}
+
+function initialCreateNavList(DOMlocation) {
     for (var l in restaurants) {
-        addLiById('navList',restaurants[l].storeLocation, l);
+        addLiById(DOMlocation,restaurants[l].storeLocation, l);
     }
-    addLiById('navList','Totals by Timeslot',-1);
+    addLiById(DOMlocation,'Totals by Timeslot',-1);
 }
 
 //
 //  BEGIN app logic.
 //
 
-
 var restaurants = [];
 for (var i=0;i < restaurantData.length;i++) {
     restaurants[i] = new Restaurant (restaurantData[i]);
     restaurants[i].retrieveData();
 }
-createNavList();
+
+var navUl = document.getElementById('navList');
+initialCreateNavList(navUl);
+navUl.addEventListener("click", function(e) {
+    displayTable (e.target.id);
+}, false);
+
 
 var pizzaData = document.getElementById('pizzaId');
 var storeData = document.getElementById('storeId');
@@ -265,4 +263,6 @@ if (pizzaData) {
 
 var m = getPizzaTotals();
 totalData.innerHTML = m[0];
+
+
 // console.log(m[1]);
