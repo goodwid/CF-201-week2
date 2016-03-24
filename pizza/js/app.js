@@ -29,6 +29,7 @@ function Restaurant(item) {
             return this.dataStorage;
         }
     };
+    // this.retrieveData()
     this.createData = function () {
         var open = this.hoursOpen[0];
         var close = this.hoursOpen[1];

@@ -72,6 +72,17 @@ li a {
     background-repeat: repeat;
     margin: auto;
 }
+
+#formLocation {
+    width: 60em;
+    margin: 0 auto;
+    clear: both;
+}
+#formHolder {
+    /*visibility: hidden;*/
+
+}
+
 .locationInfo {
     float: left;
 }
