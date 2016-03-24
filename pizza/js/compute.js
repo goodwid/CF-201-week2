@@ -1,5 +1,9 @@
 function randomRange (low,high) {
- return Math.floor(Math.random()*(high-low))+low;
+    if (low < high) {
+        return Math.floor(Math.random()*(high-low))+low;
+    } else if (low >= high) {
+        return low;
+    }
 }
 
 exports.randomRange = randomRange;
