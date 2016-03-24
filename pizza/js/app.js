@@ -2,11 +2,11 @@ var exports = {};
 
 var restaurantData = [
     ["Beaverton",[8,26], "Tuesday - Sunday, closed on Mondays", "Bob Jones", "images/jones.jpg", "555-34-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-    ["Hillsboro",[8,26], "Tuesday - Sunday, closed on Mondays", "Edward Montgomery", "images/montgomery.jpg", "555-21-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-    ["Downtown",[8,26], "Tuesday - Sunday, closed on Mondays", "Fred Smith", "images/smith.jpg", "555-99-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-    ["Northeast",[8,26], "Tuesday - Sunday, closed on Mondays", "Angela Harper", "images/harper.jpg", "555-11-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-    ["Clackamas",[8,26], "Tuesday - Sunday, closed on Mondays", "Walter Cartwright", "images/cartwright.jpg", "555-86-PIZZA", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]],
-    ["PDX-Airport",[8,26], "Tuesday - Sunday, closed on Mondays", "Cindy Walker", "images/walker.jpg", "555-PDX-PIES", [[0,4],[0,7],[2,15],[15,35],[12,31],[5,20]], [[0,4],[0,4],[1,4],[3,8],[5,12],[6,11]]]
+    ["Hillsboro",[8,26], "Tuesday - Sunday, closed on Mondays", "Edward Montgomery", "images/montgomery.jpg", "555-21-PIZZA", [[1,3],[5,9],[2,13],[18,32],[1,3],[8,20]], [[1,7],[2,8],[1,6],[3,9],[5,12],[6,16]]],
+    ["Downtown",[8,26], "Tuesday - Sunday, closed on Mondays", "Fred Smith", "images/smith.jpg", "555-99-PIZZA", [[0,4],[0,7],[2,15],[10,26],[8,22],[0,2]], [[0,4],[0,4],[1,4],[4,6],[7,15],[2,8]]],
+    ["Northeast",[8,26], "Tuesday - Sunday, closed on Mondays", "Angela Harper", "images/harper.jpg", "555-11-PIZZA", [[0,4],[0,7],[5,15],[25,39],[22,36],[5,21]], [[0,4],[0,4],[0,4],[13,18],[5,22],[16,31]]],
+    ["Clackamas",[8,26], "Tuesday - Sunday, closed on Mondays", "Walter Cartwright", "images/cartwright.jpg", "555-86-PIZZA", [[2,7],[3,8],[1,5],[5,13],[22,41],[15,20]], [[3,5],[3,9],[1,4],[2,4],[15,42],[6,21]]],
+    ["PDX-Airport",[8,26], "Tuesday - Sunday, closed on Mondays", "Cindy Walker", "images/walker.jpg", "555-PDX-PIES", [[0,4],[0,7],[2,15],[6,9],[4,8],[2,4]], [[0,4],[0,4],[1,4],[5,18],[2,5],[3,11]]]
 ];
 
 function Restaurant(item) {
@@ -82,6 +82,10 @@ function Restaurant(item) {
             newRow.appendChild (createTdEl(storeData[j][3]));
             newTable.appendChild (newRow);
         } // for j
+        newRow = createTrEl();
+        newRow.appendChild (createTdEl('Total:'));
+        newRow.appendChild (createTdEl(total));
+        newTable.appendChild(newRow);
         this.LocationTotal = total;
         newDiv.appendChild(newTable);
         return (newDiv);
@@ -142,7 +146,7 @@ var createLiEl = function (data) {
 function getPizzaTotals () {
     var total = 0;
     for (i in restaurants) {
-        total += restaurants.locationTotal;
+        total += restaurants[i].locationTotal;
     }
     return total;
 }
@@ -183,16 +187,17 @@ function createNavList() {
 //  BEGIN app logic.
 //
 
-
 var restaurants = [];
 for (var i=0;i < restaurantData.length;i++) {
     restaurants[i] = new Restaurant (restaurantData[i]);
+    restaurants[i].retrieveData();
 }
 createNavList();
 
 var pizzaData = document.getElementById('pizzaId');
 var storeData = document.getElementById('storeId');
 var totalData = document.getElementById('pizzaTotal');
+if (pizzaData)
 pizzaData.appendChild (restaurants[0].generatePizzaTable());
 storeData.appendChild (restaurants[0].generateStoreData());
 totalData.innerHTML = getPizzaTotals();
