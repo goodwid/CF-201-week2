@@ -174,6 +174,7 @@ function getPizzaTotals () {
     }
     return [weeklyTotal,slotTotal];
 }
+
 function generateWeeklyTotalsTable (arr) {
     var newDiv = document.createElement('div');
     newDiv.setAttribute('id','pizzaHolder');
@@ -190,7 +191,11 @@ function generateWeeklyTotalsTable (arr) {
     newTable.appendChild (newHeadRow);
     for (j=8;j<arr.length;j++) {
         newRow = createTrEl();
-        newRow.appendChild (createTdEl(j + ':00'));
+        if (j>23){
+            newRow.appendChild (createTdEl((j-24) + ':00'));
+        } else {
+            newRow.appendChild (createTdEl(j + ':00'));
+        }
         newRow.appendChild (createTdEl(arr[j]));
         newTable.appendChild (newRow);
     } // for j
