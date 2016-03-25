@@ -4,6 +4,8 @@
     <meta charset="utf-8"></meta>
     <title>Pizza 3001 data - internal use only</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+
 </head>
 <body>
     <header>
@@ -21,21 +23,28 @@
         </section>
     </div>
     <section id = "formLocation">
-        <input type="button" id="showForm" value="Click to show entry form for new store.">
+        <!-- <input type="button" id="showForm" value="Click to show entry form for new store."> -->
 
-        <div id="formHolder">
-            <label for="name">name</label>
-            <input id="name">
-            <label for="name"></label>
-            <input id="name">
-            <label for="name"></label>
-            <input id="name">
-            <label for="name"></label>
-            <input id="name">
-            <label for="name"></label>
-            <input id="name">
+        <div id="formCol1">
+            <label for="storeName">Store name:</label>
+            <input id="storeName" class="input1" tabindex="1"><br>
+            <label for="daysOpen">Days open:</label>
+            <input id="daysOpen" class="input1" tabindex="3"><br>
+            <label for="hoursOpen">Opening Time:</label>
+            <input id="hoursOpen" class="input3" tabindex="5"><br>
+            <label for="hoursClosed">Closing Time:</label>
+            <input id="hoursClosed" class="input3" tabindex="6"><br>
 
+        </div>
+        <div id="formCol2">
+            <label for="managerName">Manager Name:</label>
+            <input id="managerName" class="input1" tabindex="2"><br>
+            <label for="managerPhoto">Manager Photo:</label>
+            <input id="managerPhoto" type="file"><br>
+        </div>
 
+        <div id="formFooter">
+            <input id="formButton" type="button" class="sub-button" value="Submit">
         </div>
     </section>
     <script src="js/compute.js"></script>

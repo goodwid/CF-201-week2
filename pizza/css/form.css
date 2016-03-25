@@ -1,0 +1,49 @@
+label {
+    width: 120px;
+    display: inline-block;
+    text-align: right;
+    margin: 2px 4px 6px 4px;
+}
+
+input,select {
+    border: 1px solid #000000;
+    background: #ffffcc;
+}
+#formLocation {
+    width: 60em;
+    margin: 0 auto;
+    clear: both;
+}
+#formCol1 {
+    width: 29em;
+    float: left;
+}
+#formCol2 {
+    width: 29em;
+    float: right;
+}
+#formFooter {
+    clear: both;
+    width: 60em;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+.input1 {
+    width: 200px;
+    border-radius: 2px;
+}
+.input2 {
+    width: 90px;
+    border-radius: 2px;
+}
+
+.input3 {
+    width: 30px;
+    border-radius: 2px;
+}
+
+.sub-button {
+    /*margin-left:212px;*/
+    border-radius: 3px;
+}
