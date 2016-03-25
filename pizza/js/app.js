@@ -255,6 +255,32 @@ navUl.addEventListener("click", function(e) {
     }
 }, false);
 
+var buttonCheck = document.getElementById('formButton');
+buttonCheck.addEventListener("click", function() {
+  var newManagerName = document.getElementById('managerName').value;
+  var newStoreName = document.getElementById('storeName').value;
+  var newDaysOpen = document.getElementById('daysOpen').value;
+  var newHoursOpen = document.getElementById('hoursOpen').value;
+  var newHoursClosed = document.getElementById('hoursClosed').value;
+  var newPizzaSeed = document.getElementById('pizzaSeed').value;
+  var pizzaSeedArry = newPizzaSeed.split(" ");
+  var targetArrayPizza = [];
+  for (var i = 0; i < pizzaSeedArry.length; i++) {
+    targetArrayPizza.push(pizzaSeedArry[i].split(","));
+  }
+
+  var newDeliverySeed = document.getElementById('deliverySeed').value;
+  var deliverySeedArry = newDeliverySeed.split(" ");
+  var targetArrayDelivery = [];
+  for (var i = 0; i < deliverySeedArry.length; i++) {
+    targetArrayDelivery.push(deliverySeedArry[i].split(","));
+  }
+
+  // console.log(newManagerName, n ewStoreName, newDaysOpen, newHoursOpen, newHoursClosed, newPizzaSeed, pizzaSeedArry);
+  var results = [];
+  results.push(newStoreName, [newHoursOpen, newHoursClosed], newDaysOpen, newManagerName, " ", " ", targetArrayPizza, targetArrayDelivery);
+  console.log(results);
+});
 
 var pizzaData = document.getElementById('pizzaId');
 var storeData = document.getElementById('storeId');
