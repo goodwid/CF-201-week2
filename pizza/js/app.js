@@ -31,18 +31,18 @@ function Restaurant(item) {
     };
     // this.retrieveData()
     this.createData = function () {
-        var open = this.hoursOpen[0];
-        var close = this.hoursOpen[1];
+        var open = parseInt(this.hoursOpen[0]);
+        var close = parseInt(this.hoursOpen[1]);
         var pizzaCount = this.pizzaCount;
         var deliveryCount = this.deliveryCount;
         var hour,pLow,pHigh,dLow,dHigh,pizzas,deliveries,drivers;
         var blockcount=0; // Determines which block to use based on the hour, assuming each block is 3 hours long.
         var results = [];
         for (hour = open ; hour < close ; hour++) {
-            pLow = pizzaCount[(blockcount-blockcount%3)/3][0];
-            pHigh = pizzaCount[(blockcount-blockcount%3)/3][1];
-            dLow = deliveryCount[(blockcount-blockcount%3)/3][0];
-            dHigh = deliveryCount[(blockcount-blockcount%3)/3][1];
+            pLow = parseInt(pizzaCount[(blockcount-blockcount%3)/3][0]);
+            pHigh = parseInt(pizzaCount[(blockcount-blockcount%3)/3][1]);
+            dLow = parseInt(deliveryCount[(blockcount-blockcount%3)/3][0]);
+            dHigh = parseInt(deliveryCount[(blockcount-blockcount%3)/3][1]);
             pizzas = randomRange(pLow,pHigh);                 // randomRange() is loaded in compute.js
             this.locationTotal += pizzas;
             deliveries=randomRange(dLow,Math.min(dHigh,pizzas));
@@ -257,30 +257,39 @@ navUl.addEventListener("click", function(e) {
 
 var buttonCheck = document.getElementById('formButton');
 buttonCheck.addEventListener("click", function() {
-  var newManagerName = document.getElementById('managerName').value;
-  var newStoreName = document.getElementById('storeName').value;
-  var newDaysOpen = document.getElementById('daysOpen').value;
-  var newHoursOpen = document.getElementById('hoursOpen').value;
-  var newHoursClosed = document.getElementById('hoursClosed').value;
-  var newPizzaSeed = document.getElementById('pizzaSeed').value;
-  var pizzaSeedArry = newPizzaSeed.split(" ");
-  var targetArrayPizza = [];
-  for (var i = 0; i < pizzaSeedArry.length; i++) {
-    targetArrayPizza.push(pizzaSeedArry[i].split(","));
-  }
+    var newManagerName = document.getElementById('managerName').value;
+    var newStoreName = document.getElementById('storeName').value;
+    var newDaysOpen = document.getElementById('daysOpen').value;
+    var newHoursOpen = document.getElementById('hoursOpen').value;
+    var newHoursClosed = document.getElementById('hoursClosed').value;
+    var newStorePhone = document.getElementById('storePhone').value;
+    var newPizzaSeed = document.getElementById('pizzaSeed').value;
+    var newDeliverySeed = document.getElementById('deliverySeed').value;
+    var newManagerImage = document.getElementById('managerImage').value;
+    var pizzaSeedArray = newPizzaSeed.split(" ");
+    var targetArrayPizza = [];
+    for (var i = 0; i < pizzaSeedArray.length; i++) {
+        targetArrayPizza.push(pizzaSeedArray[i].split(","));
+    }
 
-  var newDeliverySeed = document.getElementById('deliverySeed').value;
-  var deliverySeedArry = newDeliverySeed.split(" ");
-  var targetArrayDelivery = [];
-  for (var i = 0; i < deliverySeedArry.length; i++) {
-    targetArrayDelivery.push(deliverySeedArry[i].split(","));
-  }
 
-  // console.log(newManagerName, n ewStoreName, newDaysOpen, newHoursOpen, newHoursClosed, newPizzaSeed, pizzaSeedArry);
-  var results = [];
-  results.push(newStoreName, [newHoursOpen, newHoursClosed], newDaysOpen, newManagerName, " ", " ", targetArrayPizza, targetArrayDelivery);
-  console.log(results);
-});
+    var deliverySeedArray = newDeliverySeed.split(" ");
+    var targetArrayDelivery = [];
+    for (var i = 0; i < deliverySeedArray.length; i++) {
+        targetArrayDelivery.push(deliverySeedArray[i].split(","));
+    }
+
+    var results = [];
+    results.push(newStoreName, [newHoursOpen, newHoursClosed], newDaysOpen, newManagerName, newManagerImage, newStorePhone, targetArrayPizza, targetArrayDelivery);
+    var IP = restaurants.length;
+    restaurants[IP] = new Restaurant(results);
+
+    addLiById (navUl,restaurants[IP].storeLocation,IP);
+    restaurants[IP].retrieveData();
+
+
+}, false); // buttonCheck callback.
+
 
 var pizzaData = document.getElementById('pizzaId');
 var storeData = document.getElementById('storeId');
