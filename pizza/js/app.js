@@ -46,7 +46,7 @@ function Restaurant(item) {
             pizzas = randomRange(pLow,pHigh);                 // randomRange() is loaded in compute.js
             this.locationTotal += pizzas;
             deliveries=randomRange(dLow,Math.min(dHigh,pizzas));
-            drivers = Math.ceil(deliveries/3);
+            drivers = driversCalc(deliveries);
             results.push ([hour,pizzas,deliveries,drivers]);
             blockcount++;
         } // for i

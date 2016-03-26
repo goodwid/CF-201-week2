@@ -7,3 +7,9 @@ function randomRange (low,high) {
 }
 
 exports.randomRange = randomRange;
+
+function driversCalc (num) {
+    return Math.ceil(num/3);
+}
+
+exports.driversCalc = driversCalc;
