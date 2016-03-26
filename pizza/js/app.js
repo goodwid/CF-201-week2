@@ -250,6 +250,7 @@ for (var i=0;i < restaurantData.length;i++) {
 var navUl = document.getElementById('navList');
 initialCreateNavList(navUl);
 navUl.addEventListener("click", function(e) {
+    console.log(e);
     if (e.target.childElementCount === 0){
         displayTable (e.target.id);
     }
