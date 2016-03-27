@@ -154,7 +154,7 @@ function getPizzaTotals () {
     }
     var sopen,sclose;
     for (var i =0;i < restaurants.length;i++) {
-        console.log('i in getPizzaTotals: ',i);
+        // console.log('i in getPizzaTotals: ',i);
         weeklyTotal += restaurants[i].locationTotal;
         sopen = restaurants[i].hoursOpen[0];
         sclose = restaurants[i].hoursOpen[1];
@@ -162,7 +162,7 @@ function getPizzaTotals () {
             runningSlotTotal[k] =0;
         }
         for (hour = sopen ; hour < sclose ; hour++) {
-            runningSlotTotal[hour]=restaurants[i].retrieveData()[hour-sopen][1];
+            runningSlotTotal[hour] = restaurants[i].retrieveData()[hour-sopen][1];
         }
         for (var j=0;j<26;j++) {
             slotTotal[j] += runningSlotTotal[j];
@@ -266,8 +266,8 @@ if (buttonCheck) {
         var newManagerName = document.getElementById('managerName').value;
         var newStoreName = document.getElementById('storeName').value;
         var newDaysOpen = document.getElementById('daysOpen').value;
-        var newHoursOpen = document.getElementById('hoursOpen').value;
-        var newHoursClosed = document.getElementById('hoursClosed').value;
+        var newHoursOpen = parseInt(document.getElementById('hoursOpen').value);
+        var newHoursClosed = parseInt(document.getElementById('hoursClosed').value);
         var newStorePhone = document.getElementById('storePhone').value;
         var newPizzaSeed = document.getElementById('pizzaSeed').value;
         var newDeliverySeed = document.getElementById('deliverySeed').value;
