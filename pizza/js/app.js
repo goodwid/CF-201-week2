@@ -152,18 +152,19 @@ function getPizzaTotals () {
     for (var d=0;d<26;d++) {
         slotTotal[d] = 0;
     }
-    var open,close;
-    for (var i in restaurants) {
+    var sopen,sclose;
+    for (var i =0;i < restaurants.length;i++) {
+        console.log('i in getPizzaTotals: ',i);
         weeklyTotal += restaurants[i].locationTotal;
-        open = restaurants[i].hoursOpen[0];
-        close = restaurants[i].hoursOpen[1];
+        sopen = restaurants[i].hoursOpen[0];
+        sclose = restaurants[i].hoursOpen[1];
         for (var k=0;k<26;k++) {
             runningSlotTotal[k] =0;
         }
-        for (hour = open ; hour < close ; hour++) {
-            runningSlotTotal[hour]=restaurants[i].retrieveData()[hour-open][1];
+        for (hour = sopen ; hour < sclose ; hour++) {
+            runningSlotTotal[hour]=restaurants[i].retrieveData()[hour-sopen][1];
         }
-        for (var j=0;j<runningSlotTotal.length;j++) {
+        for (var j=0;j<26;j++) {
             slotTotal[j] += runningSlotTotal[j];
         }
     }
@@ -199,7 +200,7 @@ function generateWeeklyTotalsTable (arr) {
 }
 
 function displayTable (num) {
-    var parentp,parentS;
+    var parentp,parentS,tempResult;
     pizzaData = document.getElementById('pizzaHolder');
     storeData = document.getElementById('storeHolder');
     parentP = pizzaData.parentNode;
@@ -207,7 +208,9 @@ function displayTable (num) {
     parentP.removeChild(pizzaData);
     parentS.removeChild(storeData);
     if (num == -1) {
-        parentP.appendChild(generateWeeklyTotalsTable(m[1]));
+        tempResult = getPizzaTotals()
+        console.log(tempResult);
+        parentP.appendChild(generateWeeklyTotalsTable(tempResult[1]));
         var blankDiv = document.createElement('div');
         blankDiv.setAttribute('id','storeHolder');
         parentS.appendChild(blankDiv);
@@ -250,7 +253,6 @@ for (var i=0;i < restaurantData.length;i++) {
 var navUl = document.getElementById('navList');
 initialCreateNavList(navUl);
 navUl.addEventListener("click", function(e) {
-    console.log(e);
     if (e.target.childElementCount === 0){
         displayTable (e.target.id);
     }
@@ -287,7 +289,8 @@ buttonCheck.addEventListener("click", function() {
 
     addLiById (navUl,restaurants[IP].storeLocation,IP);
     restaurants[IP].retrieveData();
-
+    var q = getPizzaTotals();
+    totalData.innerHTML = q[0];
 
 }, false); // buttonCheck callback.
 
@@ -300,8 +303,7 @@ if (pizzaData) {
     storeData.appendChild (restaurants[0].generateStoreData());
 }
 
-var m = getPizzaTotals();
-totalData.innerHTML = m[0];
+totalData.innerHTML = getPizzaTotals()[0];
 
 
 // console.log(m[1]);
