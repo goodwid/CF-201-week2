@@ -1,10 +1,10 @@
 body {
     height: 800px;
     background-color:  #c0e0c0;
+    font-family: 'Open Sans', sans-serif;
 }
 h1 {
-
-    font-kerning:none;;
+    font-family: 'Orbitron', sans-serif;
 }
 h3 {
 
@@ -67,9 +67,9 @@ li a {
 }
 #indexContent {
     width: 60em;
-    height: 800px;
-    background-image: url("../images/pizza-tile2.jpg");
-    background-repeat: repeat;
+    height: 400px;
+    /*background-image: url("../images/pizza-tile2.jpg");*/
+    /*background-repeat: repeat;*/
     margin: auto;
 }
 

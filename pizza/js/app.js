@@ -251,49 +251,52 @@ for (var i=0;i < restaurantData.length;i++) {
 }
 
 var navUl = document.getElementById('navList');
-initialCreateNavList(navUl);
-navUl.addEventListener("click", function(e) {
-    if (e.target.childElementCount === 0){
-        displayTable (e.target.id);
-    }
-}, false);
+if (navUl) {
+    initialCreateNavList(navUl);
+    navUl.addEventListener("click", function(e) {
+        if (e.target.childElementCount === 0){
+            displayTable (e.target.id);
+        }
+    }, false);
+}
 
 var buttonCheck = document.getElementById('formButton');
-buttonCheck.addEventListener("click", function() {
-    var newManagerName = document.getElementById('managerName').value;
-    var newStoreName = document.getElementById('storeName').value;
-    var newDaysOpen = document.getElementById('daysOpen').value;
-    var newHoursOpen = document.getElementById('hoursOpen').value;
-    var newHoursClosed = document.getElementById('hoursClosed').value;
-    var newStorePhone = document.getElementById('storePhone').value;
-    var newPizzaSeed = document.getElementById('pizzaSeed').value;
-    var newDeliverySeed = document.getElementById('deliverySeed').value;
-    var newManagerImage = document.getElementById('managerImage').value;
-    var pizzaSeedArray = newPizzaSeed.split(" ");
-    var targetArrayPizza = [];
-    for (var i = 0; i < pizzaSeedArray.length; i++) {
-        targetArrayPizza.push(pizzaSeedArray[i].split(","));
-    }
+if (buttonCheck) {
+    buttonCheck.addEventListener("click", function() {
+        var newManagerName = document.getElementById('managerName').value;
+        var newStoreName = document.getElementById('storeName').value;
+        var newDaysOpen = document.getElementById('daysOpen').value;
+        var newHoursOpen = document.getElementById('hoursOpen').value;
+        var newHoursClosed = document.getElementById('hoursClosed').value;
+        var newStorePhone = document.getElementById('storePhone').value;
+        var newPizzaSeed = document.getElementById('pizzaSeed').value;
+        var newDeliverySeed = document.getElementById('deliverySeed').value;
+        var newManagerImage = document.getElementById('managerImage').value;
+        var pizzaSeedArray = newPizzaSeed.split(" ");
+        var targetArrayPizza = [];
+        for (var i = 0; i < pizzaSeedArray.length; i++) {
+            targetArrayPizza.push(pizzaSeedArray[i].split(","));
+        }
 
 
-    var deliverySeedArray = newDeliverySeed.split(" ");
-    var targetArrayDelivery = [];
-    for (var i = 0; i < deliverySeedArray.length; i++) {
-        targetArrayDelivery.push(deliverySeedArray[i].split(","));
-    }
+        var deliverySeedArray = newDeliverySeed.split(" ");
+        var targetArrayDelivery = [];
+        for (var i = 0; i < deliverySeedArray.length; i++) {
+            targetArrayDelivery.push(deliverySeedArray[i].split(","));
+        }
 
-    var results = [];
-    results.push(newStoreName, [newHoursOpen, newHoursClosed], newDaysOpen, newManagerName, newManagerImage, newStorePhone, targetArrayPizza, targetArrayDelivery);
-    var IP = restaurants.length;
-    restaurants[IP] = new Restaurant(results);
+        var results = [];
+        results.push(newStoreName, [newHoursOpen, newHoursClosed], newDaysOpen, newManagerName, newManagerImage, newStorePhone, targetArrayPizza, targetArrayDelivery);
+        var IP = restaurants.length;
+        restaurants[IP] = new Restaurant(results);
 
-    addLiById (navUl,restaurants[IP].storeLocation,IP);
-    restaurants[IP].retrieveData();
-    var q = getPizzaTotals();
-    totalData.innerHTML = q[0];
+        addLiById (navUl,restaurants[IP].storeLocation,IP);
+        restaurants[IP].retrieveData();
+        var q = getPizzaTotals();
+        totalData.innerHTML = q[0];
 
-}, false); // buttonCheck callback.
-
+    }, false); // buttonCheck callback.
+}
 
 var pizzaData = document.getElementById('pizzaId');
 var storeData = document.getElementById('storeId');
@@ -303,7 +306,10 @@ if (pizzaData) {
     storeData.appendChild (restaurants[0].generateStoreData());
 }
 
-totalData.innerHTML = getPizzaTotals()[0];
+var m = getPizzaTotals()
+if (totalData) {
+    totalData.innerHTML=m[0];
+}
 
 
 // console.log(m[1]);
