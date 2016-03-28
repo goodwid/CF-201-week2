@@ -3,8 +3,41 @@ body {
     background-color:  #c0e0c0;
     font-family: 'Open Sans', sans-serif;
 }
+
+nav {
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    margin-top: 10px;
+    height: 120px;
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /*position: fixed;*/
+}
+footer {
+    margin-top: 10px;
+    height: 120px;
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clear: both;
+    border: 5px solid green;
+    border-radius: 30%;
+}
 h1 {
     font-family: 'Orbitron', sans-serif;
+    border-bottom: 2px solid black;
 }
 h3 {
 
@@ -23,7 +56,13 @@ th {
 tr {
     padding: 4px;
 }
-li a {
+#mainStoreList a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+}
+#navList a {
     text-decoration: none;
     border: 1px solid white;
     padding: 5px;
@@ -32,6 +71,7 @@ li a {
     margin-right: 11px;
     background-color: #c0a0c0;
     color: white;
+    font-family: Arial;
 }
 #navList li {
     margin-bottom: 15px;
@@ -41,12 +81,11 @@ li a {
 
 #data {
     width: 60em;
+    border-top: 2px solid black;
     height: auto;
     margin: auto;
     background-color: #c0e0c0;
     clear: both;
-    /*padding-top: 40px;*/
-
 }
 
 #pizzaId {
@@ -61,19 +100,38 @@ li a {
 #storeId {
     width: 38em;
     margin: auto;
+    margin-top: 50px;
     float: right;
     background-color: #c0e0c0;
     /*padding-top: 40px;*/
 }
 #indexContent {
     width: 60em;
-    height: 400px;
-    /*background-image: url("../images/pizza-tile2.jpg");*/
-    /*background-repeat: repeat;*/
+    height: auto;
     margin: auto;
+    display: flex;
+    align-content: space-between;
+    align-items:flex-start;
+    background-image: images/pizza-tile2.jpg;
+
+}
+#content_col1 {
+    width: 38%;
+    padding: 1%;
+    margin: 1%;
+    border: 4px;
+    border-style: outset;
+    background-color: white;
 }
 
-
+#content_col2 {
+    width: 60%;
+    padding: 1%;
+    margin: 1%;
+    border: 4px;
+    border-style: outset;
+    background-color: white;
+}
 
 .locationInfo {
     float: left;
@@ -89,34 +147,6 @@ li a {
     background-color:  #c0e0c0;
 }
 
-header, footer, #data {
-    font-family: Arial, sans-serif;
-}
-nav {
-    width: auto;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-}
-
-header {
-    margin-top: 10px;
-    height: 120px;
-    width: 60em;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-footer {
-    margin-top: 10px;
-    height: 120px;
-    width: 60em;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
 /*
 * {
     border: 1px dashed red;

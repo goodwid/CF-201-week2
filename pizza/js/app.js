@@ -240,6 +240,14 @@ function initialCreateNavList(DOMlocation) {
     addLiById(DOMlocation,'Totals by Timeslot',-1);
 }
 
+function showStoreList(DOMlocation) {
+    var linkText;
+    for (var l in restaurants) {
+        linkText = restaurants[l].storeLocation + ': ' + restaurants[l].phoneNumber;
+        addLiById(DOMlocation, linkText, l);
+    }
+
+}
 //
 //  BEGIN app logic.
 //
@@ -250,6 +258,7 @@ for (var i=0;i < restaurantData.length;i++) {
     restaurants[i].retrieveData();
 }
 
+// create Nav List on sales-data.html
 var navUl = document.getElementById('navList');
 if (navUl) {
     initialCreateNavList(navUl);
@@ -258,6 +267,11 @@ if (navUl) {
             displayTable (e.target.id);
         }
     }, false);
+}
+
+var storeListUl = document.getElementById('mainStoreList');
+if (storeListUl) {
+    showStoreList(storeListUl);
 }
 
 var buttonCheck = document.getElementById('formButton');

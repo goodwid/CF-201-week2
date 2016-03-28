@@ -13,6 +13,7 @@ input,select {
     width: 60em;
     margin: 0 auto;
     clear: both;
+    border: 1px solid black.
 }
 #formCol1 {
     width: 29em;
@@ -27,7 +28,9 @@ input,select {
     width: 60em;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
 }
 .input1 {
     width: 200px;
