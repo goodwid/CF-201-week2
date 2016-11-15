@@ -1,32 +1,26 @@
 var assert = require('assert');
 var compute = require('../js/compute.js');
 
-var i,n;
-function testRandomRange () {
-    describe('Testing compute.js function: randomRange, iteration: ' + i, function() {
-      // it('should check first question', function() {     assert.deepEqual(compute.getQuestion(0), 'first');   });
-      it ('should return true as a random number as function call does not return a number outside of 10-45', function() {
-              n=compute.randomRange (10,45);
-              assert(true === ((10 <= n) && (n <= 45)));
+  describe('Testing compute.js function', () => {
+    var results = [];
+    var highest, lowest;
+    for (var i = 0; i < 10000; i++) {
+      results.push(compute.randomRange(10,45));
+    }
+    highest = Math.max.apply(null, results);
+    lowest = Math.min.apply(null, results);
 
-      });
-      it ('should return false as a function call does return a number between 30-92', function () {
-              n=compute.randomRange (30,92);
-              assert(false === ((n < 30) && (n > 92)));
-      });
-    });   // describe 1
-}
-
-for (i=0;i<1000;i++) {
-    testRandomRange();
-}
+    it ('10000 function calls do not return a number outside of 10-45', function() {
+      assert(lowest >= 10 && lowest <= 45);
+      assert(highest >= 10 && highest <= 45);
+    });
+  });
 
 describe ('Testing compute.js function: driversCalc: ', function () {
-    it('Should return 3 based on any number between 7-9', function () {
-        assert (true === (compute.driversCalc(8) === 3));
-
-    });
-    it('Should:', function () {
-        assert (false === (compute.driversCalc(10) === 3));
-    });
+  it('Should return 3 based on any number between 7-9', function () {
+    assert.equal(compute.driversCalc(8),3);
+  });
+  it('Should', function () {
+      assert.equal(compute.driversCalc(10),4);
+  });
 });
